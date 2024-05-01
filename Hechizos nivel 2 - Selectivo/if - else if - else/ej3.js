@@ -12,21 +12,29 @@ const leer = require("prompt-sync")();
  *  en otro caso si trae una Valeriana se le otorgara el permiso
  */
 const VALOR_DEF_STRING = "DEF";
+const DECIR_NOMBRE_PLANTA = "digame el nombre de la planta que encontro alumno";
+const PLANTA_1 = "Mandragora";
+const PLANTA_2 = "Valeriana";
+const PLANTA_3 = "Bubotuber";
+const PLANTA_4 = "Whomping Willow";
+const LEYENDA_1 = "estas plantas son aptas para realizar el examen";
+const LEYENDA_2 = "cuidado estas plantas son peligrosas, no podras realizar el examen";
+const LEYENDA_3 = "estas plantas no son aptas para el examen";
+
 
 function main() {
     let nombre_planta = VALOR_DEF_STRING;
 
-    console.log("digame el nombre de la planta que encontro alumno");
+    console.log(DECIR_NOMBRE_PLANTA);
     nombre_planta = leer();
 
-    if ((nombre_planta == "Mandragora") || (nombre_planta == "Valeriana")) {
-        console.log("estas plantas son aptas para realizar el examen");
+    if ((nombre_planta == PLANTA_1) || (nombre_planta == PLANTA_2)) {
+        console.log(LEYENDA_1);
 
-    } else if ((nombre_planta == "Bubotuber") || (nombre_planta == "Whomping Willow")) {
-        console.log("cuidado estas plantas son peligrosas, no podras realizar el examen");
-
+    } else if ((nombre_planta == PLANTA_3) || (nombre_planta == PLANTA_4)) {
+        console.log(LEYENDA_2);
     } else {
-        console.log("estas plantas no son aptas para el examen");
+        console.log(LEYENDA_3);
     }
 
 }

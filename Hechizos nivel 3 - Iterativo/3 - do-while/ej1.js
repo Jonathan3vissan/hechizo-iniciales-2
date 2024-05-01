@@ -315,3 +315,11 @@ function geerado_letras(min, max,) {
 
 
 }
+
+function listado(params) {
+
+let areglouno=[5]
+
+
+    
+}

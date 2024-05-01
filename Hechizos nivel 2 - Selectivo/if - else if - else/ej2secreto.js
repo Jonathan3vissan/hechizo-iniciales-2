@@ -48,6 +48,14 @@ const VUELTAS_EXACTAS_CUCHARA = 10;
 const SENTIDO_CORRECTO_VUELTAS = "HORARIO";
 const POCION_DE_VITALIDAD = "POCION DE VITALIDAD";
 const POCION_MAL_PREPARADA = "MASA NEGRA Y MAL OLIENTE"
+const LEYENDA_INGREDIENTE_1 = "bien el primer ingrediente es Raíces de Mandrágora: Estas raíces mágicas son conocidas por sus propiedades curativas y revitalizantes. Son el ingrediente principal de la poción y proporcionan energía y vitalidad al bebedor. ";
+const INSTRUCTIVO_1 = "  Dejar enfriar la poción durante unos minutos antes de filtrarla para eliminar cualquier residuo Verter la poción en frascos esterilizados y etiquetarlos adecuadamente.Esta poción es especialmente útil para restaurar la energía y la vitalidad, así como para fortalecer la resistencia física y mental del bebedor.SI ES BIEN PREPARADA SINO YA VERAN EN LO QUE SE CONVIERTE ...";
+const POCION_LOGRADA = "Hmm... parece que, contra todo pronóstico, has logrado preparar una poción que no es completamente inútil. No está mal, aunque aún queda mucho que mejorar. Tal vez hayas heredado algo de habilidad de tus antepasados... o simplemente has tenido suerte. ¡Sigue así, pero no te relajes, la perfección exige constancia!";
+const POCION_NO_LOGRADA = "¡Potter, Potter, Potter! ¿Es esto lo mejor que puedes hacer? ¡Tu incompetencia en el arte de las pociones es tan predecible como tu falta de talento! ¡Esta poción es un completo desastre! ¡Un Gryffindor no podría hacerlo peor si lo intentara intencionalmente! Ve a tu asiento y reflexiona sobre tu incompetencia.";
+const ETIQUETA_FRASCO="ETIQUETA DE TU FRASCO ";
+
+
+
 
 function main() {
     let eleccion_ingrediente_1 = VALOR_DEF_STRING;
@@ -69,7 +77,7 @@ function main() {
     eleccion_ingrediente_1 = leer();
 
     if (eleccion_ingrediente_1 == INGREDIENTE_1) {
-        console.log("bien el primer ingrediente es Raíces de Mandrágora: Estas raíces mágicas son conocidas por sus propiedades curativas y revitalizantes. Son el ingrediente principal de la poción y proporcionan energía y vitalidad al bebedor. ");
+        console.log(LEYENDA_INGREDIENTE_1);
     } else {
 
     }
@@ -81,7 +89,7 @@ function main() {
     eleccion_ingrediente_2 = leer();
 
     if (eleccion_ingrediente_2 == INGREDIENTE_2) {
-        console.log("sera coincidencia o alguien estudios pociones , bien conitunuemos");
+        console.log("sera coincidencia o alguien estudio pociones , bien conitunuemos");
 
     } else {
     }
@@ -112,18 +120,19 @@ function main() {
     console.log("las vueltas deben ser en sentido HORARIO o  CONTRAHORARIO");
     sentido_de_vuelt_cuchara = leer();
 
-    console.log("  Dejar enfriar la poción durante unos minutos antes de filtrarla para eliminar cualquier residuo Verter la poción en frascos esterilizados y etiquetarlos adecuadamente.Esta poción es especialmente útil para restaurar la energía y la vitalidad, así como para fortalecer la resistencia física y mental del bebedor.SI ES BIEN PREPARADA SINO YA VERAN EN LO QUE SE CONVIERTE ...");
+    console.log(INSTRUCTIVO_1);
+
+
 
     if ((eleccion_ingrediente_1 == INGREDIENTE_1) && (eleccion_ingrediente_2 == INGREDIENTE_2) && (eleccion_ingrediente_3 == INGREDIENTE_3)
         && (cantidad_ingrediente_1 == EXACTA_CANTIDAD_INGREDIENTE_1) && (cantidad_ingrediente_2 == EXACTA_CANTIDAD_INGREDIENTE_2) && (cantidad_ingrediente_3 == EXACTA_CANTIDAD_INGREDIENTE_3) && (cant_vueltas_cuchara == VUELTAS_EXACTAS_CUCHARA) && (sentido_de_vuelt_cuchara == SENTIDO_CORRECTO_VUELTAS)) {
 
-        console.log("Hmm... parece que, contra todo pronóstico, has logrado preparar una poción que no es completamente inútil. No está mal, aunque aún queda mucho que mejorar. Tal vez hayas heredado algo de habilidad de tus antepasados... o simplemente has tenido suerte. ¡Sigue así, pero no te relajes, la perfección exige constancia!");
-
-        console.log("ETIQUETA DE TU FRASCO ", POCION_DE_VITALIDAD);
+        console.log(POCION_LOGRADA);
+        console.log(ETIQUETA_FRASCO, POCION_DE_VITALIDAD);
 
     } else {
-        console.log("¡Potter, Potter, Potter! ¿Es esto lo mejor que puedes hacer? ¡Tu incompetencia en el arte de las pociones es tan predecible como tu falta de talento! ¡Esta poción es un completo desastre! ¡Un Gryffindor no podría hacerlo peor si lo intentara intencionalmente! Ve a tu asiento y reflexiona sobre tu incompetencia.");
-        console.log("ETIQUETA DEL FRASCO", POCION_MAL_PREPARADA);
+        console.log(POCION_NO_LOGRADA);
+        console.log(ETIQUETA_FRASCO, POCION_MAL_PREPARADA);
     }
 
 }

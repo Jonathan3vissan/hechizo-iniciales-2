@@ -13,27 +13,27 @@ const leer = require("prompt-sync")();
  * si sacara 30 entonces pertenece a Slytherin
  */
 const VALOR_NUM_DEF = 0;
+const LEYENDA_MAESTRO = "muy buena alumnado, hoy determinaremos su asignacion a alguna de las casas de Hogwart, dependiendo de su puntuacion del examen se le asignara un casa u otra por favor ingrese su puntuacion del examnes";
+const CASAS_1 = "se le asigna la casa de SLYTHERIN exitos";
+const CASAS_2 = "se le asigna la casa de RAVENCLAW exitos";
+const CASAS_3 = "se le asigna la casa de HUFFLEPUFF exitos";
+const CASAS_4 = "se le asigna la casa de Gryffindor exitos";
 
 function main() {
     let puntuacion_examen = VALOR_NUM_DEF;
 
-    console.log("muy buena alumnado, hoy determinaremos su asignacion a alguna de las casas de Hogwart");
-    console.log("dependiendo de su puntuacion del examen se le asignara un casa u otra");
-    console.log("por favor ingrese su puntuacion del examnes");
+    console.log(LEYENDA_MAESTRO);
     puntuacion_examen = Number(leer());
 
     if (puntuacion_examen < 50) {
-        console.log("se le asigna la casa de SLYTHERIN exitos");
-
+        console.log(CASAS_1);
 
     } else if ((puntuacion_examen >= 50) && (puntuacion_examen < 70)) {
-        console.log("se le asigna la casa de RAVENCLAW exitos");
-
+        console.log(CASAS_2);
     } else if ((puntuacion_examen >= 70) && (puntuacion_examen < 90)) {
-        console.log("se le asigna la casa de HUFFLEPUFF exitos");
-
+        console.log(CASAS_3);
     } else {
-        console.log("se le asigna la casa de Gryffindor exitos");
+        console.log(CASAS_4);
     }
 
 
