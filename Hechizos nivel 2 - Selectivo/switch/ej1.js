@@ -13,21 +13,27 @@ const leer = require("prompt-sync")();
  * 
  */
 const VALOR_DEF_STRING = "DEF";
-
+const POCION_1="FELIX FELICIS";
+const POCION_2="POLVO DE FLU";
+const POCION_3="POCION MULTIJUGO";
+const LEYENDA_1="esta pocion es extremadamente compleja y peligrosa";
+const LEYENDA_2="esta pocion es compleja pero util en la red de transportacion";
+const LEYENDA_3="esta pocion es complicada pero muy util para la transformaciones temporales";
+const LEYENDA_4="no tenemos informacion sobre esta pocion en nuestro registros";
 function main() {
     let nombre_pocion = VALOR_DEF_STRING;
 
     console.log("dime cual es el nombre de la pocion");
     nombre_pocion = leer();
-    if (nombre_pocion == "Felix Felicis") {
-        console.log("esta pocion es extremadamente compleja y peligrosa");
-    } else if (nombre_pocion == "Polvo de Flu") {
-        console.log("esta pocion es compleja pero util en la red de transportacion");
-    } else if (nombre_pocion == "Pocion Multijugos") {
+    if (nombre_pocion == POCION_1) {
+        console.log(LEYENDA_1);
+    } else if (nombre_pocion == POCION_2) {
+        console.log(LEYENDA_2);
+    } else if (nombre_pocion == POCION_3) {
 
-        console.log("esta pocion es complicada pero muy util para la transformaciones temporales");
+        console.log(LEYENDA_3);
     } else {
-        console.log("no tenemos informacion sobre esta pocion en nuestro registros");
+        console.log(LEYENDA_4);
     }
 
 }
