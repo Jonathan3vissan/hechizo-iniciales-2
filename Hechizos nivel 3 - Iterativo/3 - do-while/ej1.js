@@ -52,7 +52,6 @@ const ELEJIR_DAÑO_RECIBIDO_DEF = false;
 const ELECCION_RECIBIR_DAÑO_DEF = 0;
 const DAÑO_SALUD = 10.4;
 const DAÑO_CORDURA = 5.7;
-const CONTADOR_DE_ELEECION_FIN = 3;
 const DESTRUCCION_HOROCRUX_1_DEF = false;
 const DESTRUCCION_HOROCRUX_2_DEF = false;
 const DESTRUCCION_HOROCRUX_3_DEF = false;
@@ -66,7 +65,7 @@ const INTENTO_A_CODIGO_5_DEF = false;
 const TOTAL_DESTRUCCION_DEF = false;
 const J_DEF = 0;
 const J_FIN = 3;
-const POSIBILIDAD_DE_MUERTE=false;
+const POSIBILIDAD_DE_MUERTE = false;
 
 
 function main() {
@@ -99,7 +98,8 @@ function main() {
     let intento_a_codigo_4 = INTENTO_A_CODIGO_4_DEF;
     let intento_a_codigo_5 = INTENTO_A_CODIGO_5_DEF;
     let total_destruccion = TOTAL_DESTRUCCION_DEF;
-    let muerte_en_posibilidad=POSIBILIDAD_DE_MUERTE;
+    let muerte_en_posibilidad = POSIBILIDAD_DE_MUERTE;
+    let daño_salud_o_cordura = 0;
 
     horocrux_codigo_final_1 = generador_de_codigo(VALOR_MINIMO_1, VALOR_MAXMIMO_1, CODIGO_HOROCRUX_1);
 
@@ -140,7 +140,7 @@ function main() {
             contador = CONTADOR_VALOR_FIN_DEF;
             muerte = true;
             console.log(DERROTA);
-            muerte_en_posibilidad=true;
+            muerte_en_posibilidad = true;
 
 
         } else if ((azar_repeler_ataque < posi_de_repeler_total) && (!muerte)) {
@@ -148,68 +148,14 @@ function main() {
             elejir_daño_recibido = true;
 
 
-            while (j < J_FIN) {
-                
+            while ((eleccion_recibir_daño == 1) || (eleccion_recibir_daño == 2)) {
+
                 console.log("ELIJE QUE DAÑO VAS A RECIBIR SI SALUD(1) O CORDURA(2), SOLO ELEEJIR CON NUMERO ");
                 eleccion_recibir_daño = Number(leer());
 
-
-                if (eleccion_recibir_daño == 1) {
-                    salud = salud - DAÑO_SALUD;
-                    console.log("su salud es :\t", salud);
-                    j = J_FIN;
-
-                } else if (eleccion_recibir_daño == 2) {
-                    cordura = cordura * DAÑO_CORDURA;
-                    console.log("tu cordura es :\t", cordura);
-                    j = J_FIN;
-
-                } else {
-                    console.log("solo puedes ingresar una opcion 1 o 2 , no letras ni espacios vacios ,intenta nuevamente");
-                    j = J_DEF;
-
-                }
-
-
-
+                daño_salud_o_cordura = decision_daño(eleccion_recibir_daño, salud, j, cordura);
             }
 
-
-
-        } 
-
-
-        if ((!destruccion_horocurx_1) && (!muerte)) {
-            console.log("intenta destruir el primer ", HOROCRUX_STRING,HOROCRUX_1);
-            adivinar_codigo = leer();
-            intento_a_codigo_1 = true;
-
-
-        } else if ((!destruccion_horocurx_2) && (destruccion_horocurx_1) && (!muerte)) {
-
-            console.log("intenta destruir el segundo ", HOROCRUX_STRING,HOROCRUX_2);
-            adivinar_codigo = leer();
-            intento_a_codigo_2 = true;
-
-        } else if ((!destruccion_horocurx_3) && (destruccion_horocurx_1) && (destruccion_horocurx_2) && (!muerte)) {
-
-            console.log("intenta destruir el tercer ", HOROCRUX_STRING,HOROCRUX_3);
-            adivinar_codigo = leer();
-            intento_a_codigo_3 = true;
-
-
-        } else if ((!destruccion_horocurx_4) && (destruccion_horocurx_1) && (destruccion_horocurx_2) && (destruccion_horocurx_3) && (!muerte)) {
-
-            console.log("intenta destruir el cuarto ", HOROCRUX_STRING,HOROCRUX_4);
-            adivinar_codigo = leer();
-            intento_a_codigo_4 = true;
-
-        } else if ((!destruccion_horocurx_5) && (destruccion_horocurx_1) && (destruccion_horocurx_2) && (destruccion_horocurx_3) && (destruccion_horocurx_4) && (!muerte)) {
-
-
-            console.log("intenta destruir el ultimo ", HOROCRUX_STRING,HOROCRUX_5);
-            adivinar_codigo = leer();
-            intento_a_codigo_5 = true;
         }
 
 
@@ -218,7 +164,7 @@ function main() {
             cantidad_de_horocrux_rotos = cantidad_de_horocrux_rotos + 1;
             destruccion_horocurx_1 = true;
 
-        } else if ((adivinar_codigo != horocrux_codigo_final_1) && (intento_a_codigo_1) && (!intento_a_codigo_2)&&(!muerte)) {
+        } else if ((adivinar_codigo != horocrux_codigo_final_1) && (intento_a_codigo_1) && (!intento_a_codigo_2) && (!muerte)) {
             console.log("recibes daño al no saber el segundo codigo ");
             salud = salud - DAÑO_SALUD;
             cordura = cordura - DAÑO_CORDURA;
@@ -280,19 +226,24 @@ function main() {
         }
 
 
-        total_destruccion = destruccion_horocurx_1 && destruccion_horocurx_2 && destruccion_horocurx_3 && destruccion_horocurx_4 && destruccion_horocurx_5
 
+
+
+
+
+
+        total_destruccion = determinar_valor_bolean(destruccion_horocurx_1, destruccion_horocurx_2, destruccion_horocurx_3, destruccion_horocurx_4, destruccion_horocurx_5)
 
         if (total_destruccion) {
 
             console.log(VICTORIA);
             contador = CONTADOR_VALOR_FIN_DEF;
 
-        } else if ((contador == CONTADOR_VALOR_FIN_DEF)  && (!muerte_en_posibilidad)) {
+        } else if ((contador == CONTADOR_VALOR_FIN_DEF) && (!muerte_en_posibilidad)) {
 
             console.log(DERROTA);
 
-        }else if ((salud<=0)||(cordura<=0)&&(!muerte_en_posibilidad)) {
+        } else if ((salud <= 0) || (cordura <= 0) && (!muerte_en_posibilidad)) {
 
             console.log(DERROTA);
         }
@@ -300,6 +251,27 @@ function main() {
 }
 main();
 
+
+
+
+function decision_daño(eleccion_recibir_daño, salud, j, cordura) {
+    if (eleccion_recibir_daño == 1) {
+        salud = salud - DAÑO_SALUD;
+        console.log("su salud es :\t", salud);
+        j = J_FIN;
+
+    } else if (eleccion_recibir_daño == 2) {
+        cordura = cordura * DAÑO_CORDURA;
+        console.log("tu cordura es :\t", cordura);
+        j = J_FIN;
+
+    } else {
+        console.log("solo puedes ingresar una opcion 1 o 2 , no letras ni espacios vacios ,intenta nuevamente");
+        j = J_DEF;
+
+    }
+    return { salud, j, cordura };
+}
 
 function generador_de_codigo(min, max, codigo_horocrux) {
     let azar_horocrux = Math.round(Math.random() * (min - max) + max);
@@ -314,4 +286,18 @@ function geerado_letras(min, max,) {
     return (cambio)
 
 
+}
+/**
+ * devuelve valor boolean
+ * @param {Boolean} valor_1 true o false
+ * @param {Boolean} valor_2 true o false
+ * @param {Boolean} valor_3 true o false
+ * @param {Boolean} valor_4 true o false
+ * @param {Boolean} valor_5 true o false
+ * @returns un valor boolean
+ */
+function determinar_valor_bolean(valor_1, valor_2, valor_3, valor_4, valor_5) {
+
+    let decision = valor_1 && valor_2 && valor_3 && valor_4 && valor_5
+    return (decision)
 }
