@@ -28,6 +28,7 @@ const HECHIZO_1 = "Expecto Patronum";
 const HECHIZO_2 = "Wingardium Leviosa";
 const HECHIZO_3 = "Expelliarmus";
 const HECHIZO_4 = "Avada Kedavra"
+const LANZASTE_HECHIZO = "LANZASTE HECHIZO";
 
 function main() {
     let eleccion_numero = VALOR_DEF_NUM;
@@ -36,15 +37,15 @@ function main() {
     eleccion_numero = Number(leer());
 
     if (eleccion_numero == CODIGO_HECHIZO_1) {
-        console.log("lanzaste hechizo\t", HECHIZO_1);
+        console.log(LANZASTE_HECHIZO, "\t", HECHIZO_1);
 
     } else if (eleccion_numero == CODIGO_HECHIZO_2) {
-        console.log("lanzaste hechizo\t", HECHIZO_2);
+        console.log(LANZASTE_HECHIZO, "\t", HECHIZO_2);
     } else if (eleccion_numero == CODIGO_HECHIZO_3) {
-        console.log("lanzaste hechizo\t", HECHIZO_3);
+        console.log(LANZASTE_HECHIZO, "\t", HECHIZO_3);
 
     } else if (eleccion_numero == CODIGO_HECHIZO_4) {
-        console.log("lanzaste hechizo\t", HECHIZO_4);
+        console.log(LANZASTE_HECHIZO, "\t", HECHIZO_4);
 
     } else if ((eleccion_numero >= 2001) || (eleccion_numero <= 999)) {
         console.log("debes elegir entre un numero mayor que 999 y menor que 2001 Y NO DEJAR EN BLANCO LA ELECCION");

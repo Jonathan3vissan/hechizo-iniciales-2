@@ -11,15 +11,19 @@ const leer = require("prompt-sync")();
  */
 
 const VALOR_NUM_DEF = 0;
+const PREGUNTA_1 = "que edad tiene el mago ?";
+const PREGUNTA_2 = "cuantos dias de practica tienes del hechizo patronus";
+
 function main() {
 
     let edad_mago = VALOR_NUM_DEF;
     let dias_de_practicas = VALOR_NUM_DEF;
     let potencia = VALOR_NUM_DEF;
 
-    console.log("que edad tiene el mago");
+
+    console.log(PREGUNTA_1);
     edad_mago = Number(leer());
-    console.log("cuantos dias de practica tienes del hechizo patronus");
+    console.log(PREGUNTA_2);
     dias_de_practicas = Number(leer());
     potencia = (edad_mago * 2 + dias_de_practicas / 2)
     console.log("la potencia de tu hechizo patronus es de :", potencia, "krags");

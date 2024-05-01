@@ -10,6 +10,9 @@ const leer = require("prompt-sync")();
  * Cualquier otro tipo de nucleo - No reconocemos ese tipo de núcleo. Por favor, ingrese un núcleo válido.
  */
 const VALOR_DEF_STRING = "DEF";
+const NUCELO_1="FENIX";
+const NUCELO_2="UNICORNIO";
+const NUCELO_3="DRAGON"
 
 function main() {
     let nombre_nucleo = VALOR_DEF_STRING;
@@ -18,13 +21,13 @@ function main() {
 
     nombre_nucleo = leer();
 
-    if (nombre_nucleo == "Fenix") {
+    if (nombre_nucleo == NUCELO_1) {
         console.log("excelente eleccion! las varitas con nucleo de Fenix son poderosas y leales");
 
-    } else if (nombre_nucleo == "Unicornio") {
+    } else if (nombre_nucleo == NUCELO_2) {
 
         console.log("las varitas con nucleo de unicornio son conocidas por su pureza y foerza");
-    } else if (nombre_nucleo == "Dragon") {
+    } else if (nombre_nucleo == NUCELO_3) {
 
         console.log("¡CUIDADO! las varitas con nucleo de dragon son poderosas pero pueden ser temperamentales");
     } else {

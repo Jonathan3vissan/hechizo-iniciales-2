@@ -10,20 +10,24 @@ const leer = require("prompt-sync")();
  * la lealtad es 60 la varita no es apta
  */
 const VALOR_NUM_DEF = 0;
+const INGRESE_NIVEL_VARITA = "ingrese el nivel de lealtad de su varita magica ";
+const INGRESE_NIVEL_LEALTAD = "por favor ingrese el nivel de astucias de su varita magica ";
+const APTA = "esta varita magica es apta";
+const NO_APTA = "esta varita magica no es apta";
 
 function main() {
     let lealtad = VALOR_NUM_DEF;
     let astucia = VALOR_NUM_DEF;
 
-    console.log("ingrese el nivel de lealtad de su varita magica por favor");
+    console.log(INGRESE_NIVEL_VARITA);
     lealtad = Number(leer());
-    console.log("por favor ingrese el nivel de astucias de su varita magica ");
+    console.log(INGRESE_NIVEL_LEALTAD);
     astucia = Number(leer());
 
     if ((lealtad >= 70) || (astucia >= 80)) {
-        console.log("esta varita magica es apta");
+        console.log(APTA);
     } else {
-        console.log("esta varita magica no es apta");
+        console.log(NO_APTA);
     }
 }
 

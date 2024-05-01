@@ -12,6 +12,9 @@ const leer = require("prompt-sync")();
 
 
 const VALOR_NUM_DEF = 0;
+const NO_PUEDES_VISITAR = "no pode visitar Hogmeades";
+const PODES_VISITAR = "podes visitar hogmeades"
+
 function main() {
     let edad_estudiante = VALOR_NUM_DEF;
     let permiso = "def"
@@ -22,17 +25,17 @@ function main() {
         console.log("tenes permiso, si o no");
         permiso = leer();
         if (permiso == "si") {
-            console.log("podes visitar Hogmeades, disfrutalo");
+            console.log(PODES_VISITAR, "disfrutalo");
         } else if (permiso != "si") {
-            console.log("no pode visitar Hogmeades");
+            console.log(NO_PUEDES_VISITAR);
         }
 
 
     } else if (edad_estudiante < 13) {
-        console.log("no podes visitar Hogmeades");
+        console.log(NO_PUEDES_VISITAR);
 
     } else {
-        console.log("Podes visitar Hogmeades sin necesidad de autorzacion");
+        console.log(PODES_VISITAR, "sin necesidad de autorzacion");
     }
 
 

@@ -19,13 +19,11 @@ const HECHIZO_UNO = "Abrada Kedabra";
 const HECHIZO_DOS = "Cruxio";
 const HECHIZO_TRES = "Imperio";
 const VALOR_NUM_DEF = 0;
+const CONSIGNA = "clase de encantamiento, hoy lazamientos de hechizos \n consigna del dia: deberan lanzar correctaente los hechizos \n solo tendran 3 intentos para lanzar correctamnete el hechizo \n por favor lanza el hechizo de forma correcta";
+
 function main() {
     let hechizo = VALOR_DEF_STRING;
-
-    console.log("clase de encantamiento, hoy lazamientos de hechizos");
-    console.log("consigna del dia: deberan lanzar correctaente los hechizos ");
-    console.log("solo tendran 3 intentos para lanzar correctamnete el hechizo");
-    console.log("por favor lanza el hechizo de forma correcta");
+    console.log(CONSIGNA);
 
     for (let i = 3; i > VALOR_NUM_DEF; i--) {
 

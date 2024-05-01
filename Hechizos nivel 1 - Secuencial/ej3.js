@@ -9,6 +9,9 @@ const leer = require("prompt-sync")();
  * Por ejemplo si la cantidad de plumas usadas son 350 y el peso base es de 1.5kg entonces el total es de 36.5kg
  */
 const VALOR_NUM_DEF = 0;
+const PREGUNTA_1 = "Harry cuanto es  el peso base de la  Nimbus 2000  ? ";
+const PREGUNTA_2 = "cuantas plumas usaron en la fabricacion de la Nimbus 2000";
+
 
 function main() {
 
@@ -16,9 +19,9 @@ function main() {
     let peso_nimbus2000 = VALOR_NUM_DEF;
     let peso_total = VALOR_NUM_DEF;
 
-    console.log("Harry cuanto es  el peso base de la  Nimbus 2000  ? ");
+    console.log(PREGUNTA_1);
     peso_nimbus2000 = Number(leer());
-    console.log("cuantas plumas usaron en la fabricacion de la Nimbus 2000");
+    console.log(PREGUNTA_2);
     cantidad_plumas = Number(leer());
     peso_total = peso_nimbus2000 + cantidad_plumas * 0.1
     console.log("el peso neto de la Nimbus 2000 es de :", peso_total, "kg");
