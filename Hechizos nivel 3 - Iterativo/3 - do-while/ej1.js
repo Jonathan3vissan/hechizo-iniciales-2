@@ -59,16 +59,17 @@ const CONTADOR_ELEJIR_MAXI_DEF = 1;
 const ELEJIR_DAÑO_RECIBIDO_DEF = 0;
 const ESTADO_MAGO_DEF = false;
 
-
 function main() {
-    let mago = {
+    let mago = {          //si quiero hacer una funcion con ello no lo lees como objetos pregunta donde esta el erro ,fuera no tiene propiedads
         salud: 400,
         cordura: 200
-    }
+    };
     let horocrux = {
-        daño_salud: 10.4,
-        daño_cordura: 5.7
-    }
+        salud: 10.4,
+        cordura: 5.7
+
+    };
+
     let azar_prob_muerte = AZAR_PROB_MUERTE_DEF;
     let azar_rechazo_ataque = AZAR_RECHAZO_ATAQUE_DEF;
     let prob_muerte_total = PROB_MUERTE_TOTAL_DEF;
@@ -76,7 +77,7 @@ function main() {
 
     let contador = CONTADOR_DEF;
     let contador_elejir = CONTADOR_ELEJIR_DEF;
-   
+
     let codigo_final_1 = CODIGO_FINAL_1_DEF;
     let codigo_final_2 = CODIGO_FINAL_2_DEF;
     let codigo_final_3 = CODIGO_FINAL_3_DEF;
@@ -92,7 +93,7 @@ function main() {
     let horocux_destrozado_3 = HOROCRUX_DESTROZADO_3_DEF;
     let horocux_destrozado_4 = HOROCRUX_DESTROZADO_4_DEF;
     let horocux_destrozado_5 = HOROCRUX_DESTROZADO_5_DEF;
-   
+
     let horocrux_rotos = HOROCRUX_ROTOS_DEF;
 
     let adivina_el_codigo_1 = ADIVINA_EL_CODIGO_DEF_1;
@@ -139,8 +140,8 @@ function main() {
 
 
         estado_mago = mago.cordura > 0 && mago.salud > 0
-
-
+        console.log(mago);
+        console.log(horocrux);
         if ((contador > 0) && (estado_prob_muerte) && (estado_mago)) {
             mago = {
                 salud: 0,
@@ -158,14 +159,14 @@ function main() {
 
 
                 if (elejir_daño_recibido === 1) {
-                   mago.salud=mago.salud= mago.salud - horocrux.daño_salud;
+                    daño_a_mago(mago, horocrux)                 //eso revisar porque no realiza nada cuando se ejecuta
                     console.log(mago);
                     contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
-                 }
+                }
 
-                  else if (elejir_daño_recibido === 2) {
-                    mago.cordura= mago.cordura - horocrux.daño_cordura;
-                     console.log(mago);
+                else if (elejir_daño_recibido === 2) {
+                    mago.cordura = mago.cordura - horocrux.cordura;
+                    console.log(mago);
                     contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
                 } else {
                     console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
@@ -176,9 +177,9 @@ function main() {
 
 
 
-           
+
         }
-        
+
         contador = contador + 1
         contador_elejir = CONTADOR_ELEJIR_DEF;
         console.log("vuelta", contador);
@@ -191,7 +192,10 @@ function main() {
 
 } main();
 
-
+function daño_a_mago(mago, horocrux) {
+    mago.salud - horocrux.salud
+    return (mago)
+}
 
 
 
