@@ -45,6 +45,19 @@ const VALOR_MAX_RECHAZO_ATAQUE = 100;
 const AZAR_PROB_MUERTE_DEF = 0;
 const VALOR_MIN_PROB_MUERTE = 0;
 const VALOR_MAX_PROB_MUERTE = 100;
+const MAXIMO_INTENOS_DEF = 30;
+const ADIVINA_EL_CODIGO_DEF_1 = "def";
+const ADIVINA_EL_CODIGO_DEF_2 = "def";
+const ADIVINA_EL_CODIGO_DEF_3 = "def";
+const ADIVINA_EL_CODIGO_DEF_4 = "def";
+const ADIVINA_EL_CODIGO_DEF_5 = "def";
+const ESTADO_PRO_MUERTE_DEF = false;
+const ESTADO_PRO_RECHAZO_DEF = false;
+const CONTADOR_DEF = 0;
+const CONTADOR_ELEJIR_DEF = 0;
+const CONTADOR_ELEJIR_MAXI_DEF = 1;
+const ELEJIR_DAÑO_RECIBIDO_DEF = 0;
+const ESTADO_MAGO_DEF = false;
 
 
 function main() {
@@ -56,30 +69,47 @@ function main() {
         daño_salud: 10.4,
         daño_cordura: 5.7
     }
-    let prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF;
+    let azar_prob_muerte = AZAR_PROB_MUERTE_DEF;
     let azar_rechazo_ataque = AZAR_RECHAZO_ATAQUE_DEF;
     let prob_muerte_total = PROB_MUERTE_TOTAL_DEF;
-    let azar_prob_muerte = AZAR_PROB_MUERTE_DEF;
+    let prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF;
 
+    let contador = CONTADOR_DEF;
+    let contador_elejir = CONTADOR_ELEJIR_DEF;
+   
     let codigo_final_1 = CODIGO_FINAL_1_DEF;
     let codigo_final_2 = CODIGO_FINAL_2_DEF;
     let codigo_final_3 = CODIGO_FINAL_3_DEF;
     let codigo_final_4 = CODIGO_FINAL_4_DEF;
     let codigo_final_5 = CODIGO_FINAL_5_DEF;
 
+    let maximo_intentos = MAXIMO_INTENOS_DEF;
+    let estado_prob_muerte = ESTADO_PRO_MUERTE_DEF;
+    let estado_prob_rechazo = ESTADO_PRO_RECHAZO_DEF;
+
     let horocux_destrozado_1 = HOROCRUX_DESTROZADO_1_DEF;
     let horocux_destrozado_2 = HOROCRUX_DESTROZADO_2_DEF;
     let horocux_destrozado_3 = HOROCRUX_DESTROZADO_3_DEF;
     let horocux_destrozado_4 = HOROCRUX_DESTROZADO_4_DEF;
     let horocux_destrozado_5 = HOROCRUX_DESTROZADO_5_DEF;
+   
     let horocrux_rotos = HOROCRUX_ROTOS_DEF;
 
+    let adivina_el_codigo_1 = ADIVINA_EL_CODIGO_DEF_1;
+    let adivina_el_codigo_2 = ADIVINA_EL_CODIGO_DEF_2;
+    let adivina_el_codigo_3 = ADIVINA_EL_CODIGO_DEF_3;
+    let adivina_el_codigo_4 = ADIVINA_EL_CODIGO_DEF_4;
+    let adivina_el_codigo_5 = ADIVINA_EL_CODIGO_DEF_5;
+
+    let elejir_daño_recibido = ELEJIR_DAÑO_RECIBIDO_DEF;
+    let estado_mago = ESTADO_MAGO_DEF;
+
+
+    let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
     let nombre_horocrux = [NOMBRE_HOROCRUX_1, NOMBRE_HOROCRUX_2, NOMBRE_HOROCRUX_3, NOMBRE_HOROCRUX_4, NOMBRE_HOROCRUX_5];
     let destruccion_total_horocrux = [horocux_destrozado_1, horocux_destrozado_2, horocux_destrozado_3, horocux_destrozado_4, horocux_destrozado_5];
     let codigos_finales = [codigo_final_1, codigo_final_2, codigo_final_3, codigo_final_4, codigo_final_5];
 
-    azar_prob_muerte = numero_aleatorio(VALOR_MIN_PROB_MUERTE, VALOR_MAX_PROB_MUERTE)
-    prob_muerte_total = adicion_probabilida_de_muerte(horocrux_rotos)
 
     codigos_finales[0] = HOTOCRUX_CODIGO_1 + numero_aleatorio(VALOR_MINI_HOROX_1, VALOR_MAX_HOROX_1)
     codigos_finales[1] = numero_aleatorio(VALOR_MINI_HOROX_2, VALOR_MAX_HOROX_2) + HOTOCRUX_CODIGO_2
@@ -87,19 +117,102 @@ function main() {
     codigos_finales[3] = letra_aleatoria(VALOR_MINI_HOROX_4, VALOR_MAX_HOROX_4) + HOTOCRUX_CODIGO_4
     codigos_finales[4] = HOTOCRUX_CODIGO_5 + letra_aleatoria(VALOR_MINI_HOROX_5, VALOR_MAX_HOROX_5)
 
+    while (contador < maximo_intentos) {
+        prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF + (REDUC_PROB_RECHA_ATAQ * horocrux_rotos)
+        azar_rechazo_ataque = numero_aleatorio(VALOR_MIN_RECHAZO_ATAQUE, VALOR_MAX_RECHAZO_ATAQUE)
 
-    azar_rechazo_ataque = numero_aleatorio(VALOR_MIN_RECHAZO_ATAQUE, VALOR_MAX_RECHAZO_ATAQUE)
-    prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF + (REDUC_PROB_RECHA_ATAQ * horocrux_rotos)
-
-    console.log(codigos_finales);
-    console.log(prob_muerte_total);
-    console.log(azar_prob_muerte);
+        estado_prob_rechazo = valor_comparados_azar_prob(azar_rechazo_ataque, prob_rechazo_ataques)
 
 
-    console.log("rechazo", prob_rechazo_ataques);
-    console.log(azar_rechazo_ataque);
-console.log(codigos_finales[3]);
+        azar_prob_muerte = numero_aleatorio(VALOR_MIN_PROB_MUERTE, VALOR_MAX_PROB_MUERTE)
+        prob_muerte_total = adicion_probabilida_de_muerte(horocrux_rotos)
+
+        estado_prob_muerte = valor_comparados_azar_prob(azar_prob_muerte, prob_muerte_total)
+
+
+
+        console.log(prob_muerte_total, "mayor que ", azar_prob_muerte);
+        console.log(estado_prob_muerte);
+
+        console.log(prob_rechazo_ataques, " rechazo mayor que", azar_rechazo_ataque);
+        console.log("rechazo estado", estado_prob_rechazo);
+
+
+        estado_mago = mago.cordura > 0 && mago.salud > 0
+
+
+        if ((contador > 0) && (estado_prob_muerte) && (estado_mago)) {
+            mago = {
+                salud: 0,
+                cordura: 0
+            }
+            console.log(mago);
+            console.log(DERROTA);
+            contador = MAXIMO_INTENOS_DEF;
+
+        } else if ((estado_prob_rechazo) && (estado_mago)) {
+            console.log("elije donde recibiras daño  si a la salud (1) o cordura (2), elije con los numero asignados")
+
+            while (contador_elejir < CONTADOR_ELEJIR_MAXI_DEF) {
+                elejir_daño_recibido = Number(leer());
+
+
+                if (elejir_daño_recibido === 1) {
+                   mago.salud=mago.salud= mago.salud - horocrux.daño_salud;
+                    console.log(mago);
+                    contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
+                 }
+
+                  else if (elejir_daño_recibido === 2) {
+                    mago.cordura= mago.cordura - horocrux.daño_cordura;
+                     console.log(mago);
+                    contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
+                } else {
+                    console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
+                }
+
+            }
+
+
+
+
+           
+        }
+        
+        contador = contador + 1
+        contador_elejir = CONTADOR_ELEJIR_DEF;
+        console.log("vuelta", contador);
+
+    }
+
+
+
+
+
 } main();
+
+
+
+
+
+
+/**compara condiciones y de vuelve su valor boleano
+ * 
+ * @param {Number} azar   generado
+ * @param {Number} prob  ingresada
+ * @returns un valor boleano
+ */
+function valor_comparados_azar_prob(azar, prob) {
+    let estado = false;
+    if (azar < prob) {
+        estado = true;
+    }
+    return (estado)
+}
+
+
+
+
 
 
 
@@ -112,6 +225,8 @@ console.log(codigos_finales[3]);
 function numero_aleatorio(minimo, maximo) {
     let azar = Math.round(Math.random() * (minimo - maximo) + maximo)
     return (azar)
+
+
 }
 /**devuelve un numero que detertminad un porcentaje
  * 
@@ -122,16 +237,17 @@ function adicion_probabilida_de_muerte(cantidad_roto) {
     let total = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * cantidad_roto)
     return (total)
 
+
 }
 
 /**devuelve una letra aletaria
  * 
- * @param {Number} minimo rrequerido
+ * @param {Number} minimo requerido
  * @param {Number} maximo requerido
  * @returns letra aleatoria
  */
 function letra_aleatoria(minimo, maximo) {
-    let numero = Math.round(Math.random() * (minimo * -maximo) + maximo);
+    let numero = Math.round(Math.random() * (minimo - maximo) + maximo);
     let cambio_a_letra = String.fromCharCode(numero);
     return (cambio_a_letra)
 
