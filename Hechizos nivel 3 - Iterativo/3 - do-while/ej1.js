@@ -76,7 +76,7 @@ function main() {
 
     let contador = CONTADOR_DEF;
     let contador_elejir = CONTADOR_ELEJIR_DEF;
-   
+
     let codigo_final_1 = CODIGO_FINAL_1_DEF;
     let codigo_final_2 = CODIGO_FINAL_2_DEF;
     let codigo_final_3 = CODIGO_FINAL_3_DEF;
@@ -87,12 +87,6 @@ function main() {
     let estado_prob_muerte = ESTADO_PRO_MUERTE_DEF;
     let estado_prob_rechazo = ESTADO_PRO_RECHAZO_DEF;
 
-    let horocux_destrozado_1 = HOROCRUX_DESTROZADO_1_DEF;
-    let horocux_destrozado_2 = HOROCRUX_DESTROZADO_2_DEF;
-    let horocux_destrozado_3 = HOROCRUX_DESTROZADO_3_DEF;
-    let horocux_destrozado_4 = HOROCRUX_DESTROZADO_4_DEF;
-    let horocux_destrozado_5 = HOROCRUX_DESTROZADO_5_DEF;
-   
     let horocrux_rotos = HOROCRUX_ROTOS_DEF;
 
     let adivina_el_codigo_1 = ADIVINA_EL_CODIGO_DEF_1;
@@ -105,10 +99,9 @@ function main() {
     let estado_mago = ESTADO_MAGO_DEF;
 
 
-    let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
     let nombre_horocrux = [NOMBRE_HOROCRUX_1, NOMBRE_HOROCRUX_2, NOMBRE_HOROCRUX_3, NOMBRE_HOROCRUX_4, NOMBRE_HOROCRUX_5];
-    let destruccion_total_horocrux = [horocux_destrozado_1, horocux_destrozado_2, horocux_destrozado_3, horocux_destrozado_4, horocux_destrozado_5];
     let codigos_finales = [codigo_final_1, codigo_final_2, codigo_final_3, codigo_final_4, codigo_final_5];
+    let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
 
 
     codigos_finales[0] = HOTOCRUX_CODIGO_1 + numero_aleatorio(VALOR_MINI_HOROX_1, VALOR_MAX_HOROX_1)
@@ -116,26 +109,20 @@ function main() {
     codigos_finales[2] = HOTOCRUX_CODIGO_3_A + numero_aleatorio(VALOR_MINI_HOROX_3, VALOR_MAX_HOROX_3) + HOTOCRUX_CODIGO_3_B;
     codigos_finales[3] = letra_aleatoria(VALOR_MINI_HOROX_4, VALOR_MAX_HOROX_4) + HOTOCRUX_CODIGO_4
     codigos_finales[4] = HOTOCRUX_CODIGO_5 + letra_aleatoria(VALOR_MINI_HOROX_5, VALOR_MAX_HOROX_5)
+    //tengo que revisar las funciones ne el tema de prob_actulizada por que me da mal tengo que seguir bine los numero cuando este mas descansado porque ahi se me juntaron las funciones jeje revisar bine y de una en una 
 
-    while (contador < maximo_intentos) {
-        prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF + (REDUC_PROB_RECHA_ATAQ * horocrux_rotos)
-        azar_rechazo_ataque = numero_aleatorio(VALOR_MIN_RECHAZO_ATAQUE, VALOR_MAX_RECHAZO_ATAQUE)
-
-        estado_prob_rechazo = valor_comparados_azar_prob(azar_rechazo_ataque, prob_rechazo_ataques)
-
-
-        azar_prob_muerte = numero_aleatorio(VALOR_MIN_PROB_MUERTE, VALOR_MAX_PROB_MUERTE)
-        prob_muerte_total = adicion_probabilida_de_muerte(horocrux_rotos)
-
-        estado_prob_muerte = valor_comparados_azar_prob(azar_prob_muerte, prob_muerte_total)
 
 
 
-        console.log(prob_muerte_total, "mayor que ", azar_prob_muerte);
-        console.log(estado_prob_muerte);
+    while (contador < maximo_intentos) {
+console.log("INICIO DE VUELTA APENAS INICIA WHULE",contador);
+        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)
+        console.log("ESTE ES EL DE MUERTE BOLEAN ", estado_prob_muerte);
 
-        console.log(prob_rechazo_ataques, " rechazo mayor que", azar_rechazo_ataque);
-        console.log("rechazo estado", estado_prob_rechazo);
+
+
+        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)
+        console.log("est es RECHAZAO ESTADO BOLEAN ", estado_prob_rechazo);
 
 
         estado_mago = mago.cordura > 0 && mago.salud > 0
@@ -158,14 +145,14 @@ function main() {
 
 
                 if (elejir_daño_recibido === 1) {
-                   mago.salud=mago.salud= mago.salud - horocrux.daño_salud;
+                    mago.salud = mago.salud = mago.salud - horocrux.daño_salud;
                     console.log(mago);
                     contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
-                 }
+                }
 
-                  else if (elejir_daño_recibido === 2) {
-                    mago.cordura= mago.cordura - horocrux.daño_cordura;
-                     console.log(mago);
+                else if (elejir_daño_recibido === 2) {
+                    mago.cordura = mago.cordura - horocrux.daño_cordura;
+                    console.log(mago);
                     contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
                 } else {
                     console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
@@ -176,12 +163,12 @@ function main() {
 
 
 
-           
+
         }
-        
+
         contador = contador + 1
         contador_elejir = CONTADOR_ELEJIR_DEF;
-        console.log("vuelta", contador);
+        console.log("vuelta AL FINAL CUANDO TEMRNIA LA VUELTA Y SUMA Y VUELVE AL INCIO", contador);
 
     }
 
@@ -191,20 +178,42 @@ function main() {
 
 } main();
 
-
-
-
-
-
-/**compara condiciones y de vuelve su valor boleano
+/**devuelve un numero que detertminad un porcentaje
  * 
- * @param {Number} azar   generado
- * @param {Number} prob  ingresada
- * @returns un valor boleano
- */
-function valor_comparados_azar_prob(azar, prob) {
+ * param {Number} horocrux_rotos de horocrux 
+ * returns un porcentaje final 
+ 
+function adicion_probabilida_de_muerte(horocrux_rotos) {
+    let total = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * horocrux_rotos)
+    return (total)
+
+
+}*/
+
+
+
+function prob_actualizada(horocrux_rotos) {
+    let prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF + (REDUC_PROB_RECHA_ATAQ * horocrux_rotos);
+    return (prob_rechazo_ataques)
+}
+
+function prob_actualizada_2(horocrux_rotos) {
+    let aumento_de_posibilidad = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * horocrux_rotos);
+    return (aumento_de_posibilidad)
+}
+
+function valor_comparados_azar_prob(horocrux_rotos) {
     let estado = false;
-    if (azar < prob) {
+    if (numero_aleatorio(VALOR_MIN_RECHAZO_ATAQUE, VALOR_MAX_RECHAZO_ATAQUE) < prob_actualizada(horocrux_rotos)) {
+        estado = true;
+    }
+    return (estado)
+}
+
+
+function valor_comparados_azar_prob(horocrux_rotos,) {
+    let estado = false;
+    if (numero_aleatorio(VALOR_MIN_PROB_MUERTE, VALOR_MAX_PROB_MUERTE) < prob_actualizada_2(horocrux_rotos)) {
         estado = true;
     }
     return (estado)
@@ -216,8 +225,9 @@ function valor_comparados_azar_prob(azar, prob) {
 
 
 
+
 /**generar un numero aleatorio
- * 
+ *  
  * @param {Number} minimo   para azar
  * @param {Number} maximo   para azar
  * @returns un numero aletario
@@ -225,23 +235,10 @@ function valor_comparados_azar_prob(azar, prob) {
 function numero_aleatorio(minimo, maximo) {
     let azar = Math.round(Math.random() * (minimo - maximo) + maximo)
     return (azar)
-
-
-}
-/**devuelve un numero que detertminad un porcentaje
- * 
- * @param {Number} cantidad_roto de horocrux 
- * @returns un porcentaje final 
- */
-function adicion_probabilida_de_muerte(cantidad_roto) {
-    let total = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * cantidad_roto)
-    return (total)
-
-
 }
 
 /**devuelve una letra aletaria
- * 
+ *  
  * @param {Number} minimo requerido
  * @param {Number} maximo requerido
  * @returns letra aleatoria
@@ -250,7 +247,6 @@ function letra_aleatoria(minimo, maximo) {
     let numero = Math.round(Math.random() * (minimo - maximo) + maximo);
     let cambio_a_letra = String.fromCharCode(numero);
     return (cambio_a_letra)
-
 }
 
 
