@@ -109,24 +109,18 @@ function main() {
     codigos_finales[2] = HOTOCRUX_CODIGO_3_A + numero_aleatorio(VALOR_MINI_HOROX_3, VALOR_MAX_HOROX_3) + HOTOCRUX_CODIGO_3_B;
     codigos_finales[3] = letra_aleatoria(VALOR_MINI_HOROX_4, VALOR_MAX_HOROX_4) + HOTOCRUX_CODIGO_4
     codigos_finales[4] = HOTOCRUX_CODIGO_5 + letra_aleatoria(VALOR_MINI_HOROX_5, VALOR_MAX_HOROX_5)
-    //tengo que revisar las funciones ne el tema de prob_actulizada por que me da mal tengo que seguir bine los numero cuando este mas descansado porque ahi se me juntaron las funciones jeje revisar bine y de una en una 
-
+    //ya soluciones el tema de las funciones para la condicion de entrada al fatal o de elejir el daño(dentro de estos estan la sposibilidade de aumentar el daño  o disminuir la posibilidad de rechzao) ,seguir con el tema de las pregunta y ataque pregunta a pregunta 
 
 
 
     while (contador < maximo_intentos) {
-console.log("INICIO DE VUELTA APENAS INICIA WHULE",contador);
+        console.log("INICIO DE VUELTA APENAS INICIA WHULE", contador);
         estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)
         console.log("ESTE ES EL DE MUERTE BOLEAN ", estado_prob_muerte);
-
-
-
         estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)
         console.log("est es RECHAZAO ESTADO BOLEAN ", estado_prob_rechazo);
 
-
         estado_mago = mago.cordura > 0 && mago.salud > 0
-
 
         if ((contador > 0) && (estado_prob_muerte) && (estado_mago)) {
             mago = {
