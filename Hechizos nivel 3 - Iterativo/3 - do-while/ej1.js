@@ -10,7 +10,6 @@ const NOMBRE_HOROCRUX_5 = "Nagini (serpiente)";
 const PROB_HOROCRUX_MATAR = 5;
 const ADICION_PROB_POR_HOROX_ROTO = 2.4;
 const HOROCRUX_ROTOS_DEF = 0;
-const PROB_MUERTE_TOTAL_DEF = 0;
 const PROBA_RECAHAZO_ATAQUE_DEF = 50;
 const REDUC_PROB_RECHA_ATAQ = 11.875;
 const VALOR_MINI_HOROX_1 = -3;
@@ -39,10 +38,8 @@ const HOROCRUX_DESTROZADO_2_DEF = false;
 const HOROCRUX_DESTROZADO_3_DEF = false;
 const HOROCRUX_DESTROZADO_4_DEF = false;
 const HOROCRUX_DESTROZADO_5_DEF = false;
-const AZAR_RECHAZO_ATAQUE_DEF = 0;
 const VALOR_MIN_RECHAZO_ATAQUE = 0;
 const VALOR_MAX_RECHAZO_ATAQUE = 100;
-const AZAR_PROB_MUERTE_DEF = 0;
 const VALOR_MIN_PROB_MUERTE = 0;
 const VALOR_MAX_PROB_MUERTE = 100;
 const MAXIMO_INTENOS_DEF = 30;
@@ -58,6 +55,7 @@ const CONTADOR_ELEJIR_DEF = 0;
 const CONTADOR_ELEJIR_MAXI_DEF = 1;
 const ELEJIR_DAÑO_RECIBIDO_DEF = 0;
 const ESTADO_MAGO_DEF = false;
+const PREGUNTA_DE_ADIVINAR = "intenata destruir le horocrux "
 
 
 function main() {
@@ -69,10 +67,6 @@ function main() {
         daño_salud: 10.4,
         daño_cordura: 5.7
     }
-    let azar_prob_muerte = AZAR_PROB_MUERTE_DEF;
-    let azar_rechazo_ataque = AZAR_RECHAZO_ATAQUE_DEF;
-    let prob_muerte_total = PROB_MUERTE_TOTAL_DEF;
-    let prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF;
 
     let contador = CONTADOR_DEF;
     let contador_elejir = CONTADOR_ELEJIR_DEF;
@@ -139,7 +133,7 @@ function main() {
 
 
                 if (elejir_daño_recibido === 1) {
-                    mago.salud = mago.salud = mago.salud - horocrux.daño_salud;
+                    mago.salud = mago.salud - horocrux.daño_salud;
                     console.log(mago);
                     contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
                 }
@@ -154,11 +148,21 @@ function main() {
 
             }
 
-
-
-
-
+        }else if (condition) {
+            console.log(PREGUNTA_DE_ADIVINAR, nombre_horocrux[0]);
+            adivinar_codigos[0] = leer();
+            
+            
+            
+            if (codigos_finales[0]) {
+                
+            }
         }
+
+
+
+
+
 
         contador = contador + 1
         contador_elejir = CONTADOR_ELEJIR_DEF;
