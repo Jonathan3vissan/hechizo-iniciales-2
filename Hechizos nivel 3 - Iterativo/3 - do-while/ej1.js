@@ -43,11 +43,11 @@ const VALOR_MAX_RECHAZO_ATAQUE = 100;
 const VALOR_MIN_PROB_MUERTE = 0;
 const VALOR_MAX_PROB_MUERTE = 100;
 const MAXIMO_INTENOS_DEF = 30;
-const ADIVINA_EL_CODIGO_DEF_1 = "def";
-const ADIVINA_EL_CODIGO_DEF_2 = "def";
-const ADIVINA_EL_CODIGO_DEF_3 = "def";
-const ADIVINA_EL_CODIGO_DEF_4 = "def";
-const ADIVINA_EL_CODIGO_DEF_5 = "def";
+//const ADIVINA_EL_CODIGO_DEF_1 = "def";
+//const ADIVINA_EL_CODIGO_DEF_2 = "def";
+//const ADIVINA_EL_CODIGO_DEF_3 = "def";
+//const ADIVINA_EL_CODIGO_DEF_4 = "def";
+//const ADIVINA_EL_CODIGO_DEF_5 = "def";
 const ESTADO_PRO_MUERTE_DEF = false;
 const ESTADO_PRO_RECHAZO_DEF = false;
 const CONTADOR_DEF = 0;
@@ -55,18 +55,28 @@ const CONTADOR_ELEJIR_DEF = 0;
 const CONTADOR_ELEJIR_MAXI_DEF = 1;
 const ELEJIR_DAÑO_RECIBIDO_DEF = 0;
 const ESTADO_MAGO_DEF = false;
-const PREGUNTA_DE_ADIVINAR = "intenata destruir le horocrux "
+const PREGUNTA_DE_ADIVINAR = "intenata destruir el horocrux "
+const HOROCRUX_ESTADOS_1_DEF = false;
+const HOROCRUX_ESTADOS_2_DEF = false;
+const HOROCRUX_ESTADOS_3_DEF = false;
+const HOROCRUX_ESTADOS_4_DEF = false;
+const HOROCRUX_ESTADOS_5_DEF = false;
+
+
+const mago = {
+    salud: 400,
+    cordura: 200
+}
+const horocrux = {
+    daño_salud: 10.4,
+    daño_cordura: 5.7
+}
+
+
+
 
 
 function main() {
-    let mago = {
-        salud: 400,
-        cordura: 200
-    }
-    let horocrux = {
-        daño_salud: 10.4,
-        daño_cordura: 5.7
-    }
 
     let contador = CONTADOR_DEF;
     let contador_elejir = CONTADOR_ELEJIR_DEF;
@@ -83,19 +93,33 @@ function main() {
 
     let horocrux_rotos = HOROCRUX_ROTOS_DEF;
 
+    let horocrux_estado_1 = HOROCRUX_ESTADOS_1_DEF;
+    let horocrux_estado_2 = HOROCRUX_ESTADOS_2_DEF;
+    let horocrux_estado_3 = HOROCRUX_ESTADOS_3_DEF;
+    let horocrux_estado_4 = HOROCRUX_ESTADOS_4_DEF;
+    let horocrux_estado_5 = HOROCRUX_ESTADOS_5_DEF;
+    /**
+     * 
     let adivina_el_codigo_1 = ADIVINA_EL_CODIGO_DEF_1;
     let adivina_el_codigo_2 = ADIVINA_EL_CODIGO_DEF_2;
     let adivina_el_codigo_3 = ADIVINA_EL_CODIGO_DEF_3;
     let adivina_el_codigo_4 = ADIVINA_EL_CODIGO_DEF_4;
     let adivina_el_codigo_5 = ADIVINA_EL_CODIGO_DEF_5;
+    
+    */
 
-    let elejir_daño_recibido = ELEJIR_DAÑO_RECIBIDO_DEF;
+    let adivina_codigo = "def";
+    let elejir_daño_recibido = ELEJIR_DAÑO_RECIBIDO_DEF
     let estado_mago = ESTADO_MAGO_DEF;
-
 
     let nombre_horocrux = [NOMBRE_HOROCRUX_1, NOMBRE_HOROCRUX_2, NOMBRE_HOROCRUX_3, NOMBRE_HOROCRUX_4, NOMBRE_HOROCRUX_5];
     let codigos_finales = [codigo_final_1, codigo_final_2, codigo_final_3, codigo_final_4, codigo_final_5];
-    let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
+    let estados_de_todos_horocrux = [horocrux_estado_1 && horocrux_estado_2 && horocrux_estado_3 && horocrux_estado_4 && horocrux_estado_5];
+    // let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
+
+    console.log(estados_de_todos_horocrux); ///ver si da true con todos en true
+
+
 
 
     codigos_finales[0] = HOTOCRUX_CODIGO_1 + numero_aleatorio(VALOR_MINI_HOROX_1, VALOR_MAX_HOROX_1)
@@ -108,13 +132,14 @@ function main() {
 
 
     while (contador < maximo_intentos) {
-        console.log("INICIO DE VUELTA APENAS INICIA WHULE", contador);
-        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)
-        console.log("ESTE ES EL DE MUERTE BOLEAN ", estado_prob_muerte);
-        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)
-        console.log("est es RECHAZAO ESTADO BOLEAN ", estado_prob_rechazo);
-
+        console.log("INICIO DE VUELTA APENAS INICIA WHULE", contador); //solo es control del incio de la vuelta del bucle
+        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)           //funcion que me devuelve un bolenao 
+        console.log("ESTE ES EL DE MUERTE BOLEAN ", estado_prob_muerte);      // control de si es falo o verdadre
+        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)        //funcion que me da un bolelaon
+        console.log("est es RECHAZAO ESTADO BOLEAN ", estado_prob_rechazo); // control de si es v o f
+        console.log(mago);
         estado_mago = mago.cordura > 0 && mago.salud > 0
+        console.log(codigos_finales);
 
         if ((contador > 0) && (estado_prob_muerte) && (estado_mago)) {
             mago = {
@@ -148,16 +173,28 @@ function main() {
 
             }
 
-        }else if (condition) {
-            console.log(PREGUNTA_DE_ADIVINAR, nombre_horocrux[0]);
-            adivinar_codigos[0] = leer();
+        } else
+            /*{
+            console.log(codigos_finales);
+            console.log(PREGUNTA_DE_ADIVINAR);
+            adivina_codigo = String(leer());
+            console.log(typeof adivina_codigo);
+
+
+
+            console.log(mago);
+            console.log(estados_de_todos_horocrux);
+
+
+            console.log(codigos_finales);
             
             
-            
-            if (codigos_finales[0]) {
-                
-            }
+        }*/ {comparacion_codigos_finales(codigos_finales[0])
+
         }
+
+
+
 
 
 
@@ -167,14 +204,72 @@ function main() {
         contador = contador + 1
         contador_elejir = CONTADOR_ELEJIR_DEF;
         console.log("vuelta AL FINAL CUANDO TEMRNIA LA VUELTA Y SUMA Y VUELVE AL INCIO", contador);
+    }
+
+}
+
+
+
+
+
+main();
+
+/**pide un codigo y los devuelve
+ * 
+ * @returns codigoingresado
+ */
+function ingresar_codigo() {
+    let codigo_ingresado = "def";
+
+    console.log(PREGUNTA_DE_ADIVINAR);
+    codigo_ingresado = (leer());
+    return (codigo_ingresado)
+}
+
+
+
+/**me devuelve un valor boleano dependiendo de el codigo ingresado
+ * 
+ * @param {String} codigos que se compara con el ingresado 
+ * @returns un valor boleano
+ */
+function comparacion_codigos_finales(codigos) {
+    let ingresado = "def";
+    let estado = false;
+
+    ingresado = ingresar_codigo()
+
+    if (codigos === ingresado) {
+        estado = true;
+
+    }
+    return (estado)
+
+}
+
+
+
+/**en caso de que los codigos no cincidan realiza la acccion de actualizar estado de salud de mago
+ * 
+ * 
+ * @returns la actualizacion del estado de salud del mago
+ 
+function si_codigo_incorrecto() {
+    let salud = 0;
+
+    if (comparacion_codigos_finales()) {
+        salud = mago.salud - horocrux.daño_salud
 
     }
 
+    return (salud)
+
+
+}*/
 
 
 
 
-} main();
 
 /**devuelve un numero que detertminad un porcentaje
  * 
