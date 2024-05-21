@@ -61,7 +61,7 @@ const HOROCRUX_ESTADOS_2_DEF = false;
 const HOROCRUX_ESTADOS_3_DEF = false;
 const HOROCRUX_ESTADOS_4_DEF = false;
 const HOROCRUX_ESTADOS_5_DEF = false;
-
+const CONTADOR_TRUE_DEF = 0;
 
 const mago = {
     salud: 400,
@@ -93,6 +93,10 @@ function main() {
 
     let horocrux_rotos = HOROCRUX_ROTOS_DEF;
 
+    let contador_true = CONTADOR_TRUE_DEF;
+
+    let estado_funcion_compar_cod_finales = false;
+
     let horocrux_estado_1 = HOROCRUX_ESTADOS_1_DEF;
     let horocrux_estado_2 = HOROCRUX_ESTADOS_2_DEF;
     let horocrux_estado_3 = HOROCRUX_ESTADOS_3_DEF;
@@ -116,6 +120,11 @@ function main() {
     let codigos_finales = [codigo_final_1, codigo_final_2, codigo_final_3, codigo_final_4, codigo_final_5];
     let estados_de_todos_horocrux = [horocrux_estado_1 && horocrux_estado_2 && horocrux_estado_3 && horocrux_estado_4 && horocrux_estado_5];
     // let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
+    let codigos_descifrados = [false, false, false, false, false]
+
+
+
+
 
     console.log(estados_de_todos_horocrux); ///ver si da true con todos en true
 
@@ -173,50 +182,50 @@ function main() {
 
             }
 
-        } else
-            /*{
-            console.log(codigos_finales);
-            console.log(PREGUNTA_DE_ADIVINAR);
-            adivina_codigo = String(leer());
-            console.log(typeof adivina_codigo);
+        } else {
+            estado_funcion_compar_cod_finales = comparacion_codigos_finales(codigos_finales[contador_true])
+            console.log(estado_funcion_compar_cod_finales);
+
+            let si_incorrecto_codi = si_codigo_incorrecto(estado_funcion_compar_cod_finales);
+            console.log(si_incorrecto_codi);
 
 
 
-            console.log(mago);
+
+
+
+
+            modificar_estado_en_vector_control_destruccion(estados_de_todos_horocrux, contador_true)
+
             console.log(estados_de_todos_horocrux);
 
 
-            console.log(codigos_finales);
-            
-            
-        }*/ {comparacion_codigos_finales(codigos_finales[0])
 
+
+
+
+
+            contador_true = contador_para_posicion_vector(estado_funcion_compar_cod_finales, contador_true)
+            console.log("para saber el indice donde cambia el vector", contador_true);
+            contador = contador + 1
+            contador_elejir = CONTADOR_ELEJIR_DEF;
+            console.log("vuelta AL FINAL CUANDO TEMRNIA LA VUELTA Y SUMA Y VUELVE AL INCIO", contador);
         }
 
 
 
 
-
-
-
-
-
-        contador = contador + 1
-        contador_elejir = CONTADOR_ELEJIR_DEF;
-        console.log("vuelta AL FINAL CUANDO TEMRNIA LA VUELTA Y SUMA Y VUELVE AL INCIO", contador);
     }
 
-}
 
 
 
 
+} main();
 
-main();
-
-/**pide un codigo y los devuelve
+/**pide un palabra y la devuelve
  * 
- * @returns codigoingresado
+ * @returns palabra ingresado
  */
 function ingresar_codigo() {
     let codigo_ingresado = "def";
@@ -233,15 +242,16 @@ function ingresar_codigo() {
  * @param {String} codigos que se compara con el ingresado 
  * @returns un valor boleano
  */
-function comparacion_codigos_finales(codigos) {
+function comparacion_codigos_finales(vector_codigos) {
     let ingresado = "def";
     let estado = false;
 
     ingresado = ingresar_codigo()
 
-    if (codigos === ingresado) {
+    if (vector_codigos === ingresado) {
         estado = true;
 
+        console.log("saliendo del if para codigo correcto");
     }
     return (estado)
 
@@ -249,23 +259,57 @@ function comparacion_codigos_finales(codigos) {
 
 
 
-/**en caso de que los codigos no cincidan realiza la acccion de actualizar estado de salud de mago
+/**devuevle un valor numerico que representa el indice de un vector 
+ * 
+ * @param {Number} contador_true  que se representa con un number 
+ * @returns valor usado para indice de un vector
+ */
+function contador_para_posicion_vector(estado_funcion_compar_cod_finales, contador_true) {
+
+    if (estado_funcion_compar_cod_finales) {
+        contador_true = contador_true + 1
+
+        console.log("sumando correctaente vuelta al contador dentro de la funcion", contador_true);
+    }
+
+    return (contador_true)
+
+}
+
+
+/**devuelve un vector modificacon en un indice especifico
+ * 
+ * @param {Boolean} vector_de_codigos_estados estado en indice  
+ * @param {Number} contador_true que determina el indice del vector
+   * @returns vector modifica  
+ */
+function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estados, contador_true) {
+
+    vector_de_codigos_estados[contador_true] = true;
+    return (vector_de_codigos_estados)
+}
+
+
+
+
+
+/**en caso de que los codigos no coincidan realiza la acccion de actualizar estado de salud de mago
  * 
  * 
  * @returns la actualizacion del estado de salud del mago
- 
-function si_codigo_incorrecto() {
+ */
+function si_codigo_incorrecto(estado_funcion_compar_cod_finales) {
     let salud = 0;
 
-    if (comparacion_codigos_finales()) {
+    if (estado_funcion_compar_cod_finales) {
         salud = mago.salud - horocrux.daño_salud
-
+        console.log("saliendo del if de cuando es incorrecto dentro de la funcion, salud del mago actualiza", mago);
     }
 
     return (salud)
 
 
-}*/
+}
 
 
 
@@ -279,8 +323,8 @@ function si_codigo_incorrecto() {
 function adicion_probabilida_de_muerte(horocrux_rotos) {
     let total = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * horocrux_rotos)
     return (total)
-
-
+ 
+ 
 }*/
 
 
