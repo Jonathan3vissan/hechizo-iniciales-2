@@ -191,7 +191,8 @@ function main() {
 
 
 
-
+// revisar las funciones que no dieron del todo bien los valores 
+//ejecutar y revisar y comprar valores colocar mas los para un correcto control 
 
 
 
@@ -229,10 +230,12 @@ function main() {
  */
 function ingresar_codigo() {
     let codigo_ingresado = "def";
-
+console.log( "inicio de funcion de ingrsar codigo");
     console.log(PREGUNTA_DE_ADIVINAR);
     codigo_ingresado = (leer());
+    console.log("finde cuncion ingresar codigo");
     return (codigo_ingresado)
+    
 }
 
 
@@ -245,7 +248,7 @@ function ingresar_codigo() {
 function comparacion_codigos_finales(vector_codigos) {
     let ingresado = "def";
     let estado = false;
-
+console.log("------inicio de fucnion de comparacion---");
     ingresado = ingresar_codigo()
 
     if (vector_codigos === ingresado) {
@@ -253,6 +256,8 @@ function comparacion_codigos_finales(vector_codigos) {
 
         console.log("saliendo del if para codigo correcto");
     }
+
+    console.log("-----fin de funcion de comparcion");
     return (estado)
 
 }
@@ -299,33 +304,22 @@ function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estado
  * @returns la actualizacion del estado de salud del mago
  */
 function si_codigo_incorrecto(estado_funcion_compar_cod_finales) {
-    let salud = 0;
 
-    if (estado_funcion_compar_cod_finales) {
-        salud = mago.salud - horocrux.daño_salud
+console.log("----------inion de funcion de si es incorrecto el codigo ------");
+
+    if (!estado_funcion_compar_cod_finales) {
+        mago.salud -= horocrux.daño_salud
+        mago.cordura -= horocrux.daño_cordura
         console.log("saliendo del if de cuando es incorrecto dentro de la funcion, salud del mago actualiza", mago);
+        return (mago)
     }
-
-    return (salud)
+console.log( "------- fini de duncion de si es incorrecto el codigo");
 
 
 }
 
 
 
-
-
-/**devuelve un numero que detertminad un porcentaje
- * 
- * param {Number} horocrux_rotos de horocrux 
- * returns un porcentaje final 
- 
-function adicion_probabilida_de_muerte(horocrux_rotos) {
-    let total = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * horocrux_rotos)
-    return (total)
- 
- 
-}*/
 
 
 
