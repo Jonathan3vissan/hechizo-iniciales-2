@@ -43,11 +43,6 @@ const VALOR_MAX_RECHAZO_ATAQUE = 100;
 const VALOR_MIN_PROB_MUERTE = 0;
 const VALOR_MAX_PROB_MUERTE = 100;
 const MAXIMO_INTENOS_DEF = 30;
-//const ADIVINA_EL_CODIGO_DEF_1 = "def";
-//const ADIVINA_EL_CODIGO_DEF_2 = "def";
-//const ADIVINA_EL_CODIGO_DEF_3 = "def";
-//const ADIVINA_EL_CODIGO_DEF_4 = "def";
-//const ADIVINA_EL_CODIGO_DEF_5 = "def";
 const ESTADO_PRO_MUERTE_DEF = false;
 const ESTADO_PRO_RECHAZO_DEF = false;
 const CONTADOR_DEF = 0;
@@ -65,6 +60,8 @@ const CONTADOR_TRUE_DEF = 0;
 const SI_INCORRECTO_CODI_DEF = 0;
 const VICTORIIAA_DEF = false;
 const MENSAJE_DESTRUYE_HOROCRUX_DEF = "def"
+const OPCION_UNO = 1;
+const OPCION_DOS = 2;
 
 
 
@@ -114,6 +111,9 @@ function main() {
     let horocrux_estado_3 = HOROCRUX_ESTADOS_3_DEF;
     let horocrux_estado_4 = HOROCRUX_ESTADOS_4_DEF;
     let horocrux_estado_5 = HOROCRUX_ESTADOS_5_DEF;
+
+    let elejir_daño_opcional = 0;
+    let elejir_daño_opciona2 = 0;
 
     let vicotriiaa = VICTORIIAA_DEF;
 
@@ -165,22 +165,17 @@ function main() {
             while (contador_elejir < CONTADOR_ELEJIR_MAXI_DEF) {
                 elejir_daño_recibido = Number(leer());
 
+                console.log(elejir_daño(elejir_daño_recibido, OPCION_UNO, mago.salud, horocrux.daño_salud));
 
-                if (elejir_daño_recibido === 1) {
-                    mago.salud = mago.salud - horocrux.daño_salud;
-                    console.log(mago);
-                    contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
-                }
+                console.log(elejir_daño(elejir_daño_recibido, OPCION_DOS, mago.cordura, horocrux.daño_cordura));
 
-                else if (elejir_daño_recibido === 2) {
-                    mago.cordura = mago.cordura - horocrux.daño_cordura;
-                    console.log(mago);
-                    contador_elejir = CONTADOR_ELEJIR_MAXI_DEF;
-                } else {
-                    console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
-                }
-
+                mensaje_opcion_no_valida(elejir_daño_recibido, contador_elejir,)
             }
+            //else {
+            //console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
+            //}
+
+
 
         } else {
             estado_funcion_compar_cod_finales = comparacion_codigos_finales(codigos_finales[contador_true])
@@ -215,6 +210,38 @@ function main() {
 
 
 } main();
+
+function mensaje_opcion_no_valida(eleccion, contador) {
+
+    if ((eleccion === OPCION_UNO) || (eleccion === OPCION_DOS)) {
+        contador = CONTADOR_ELEJIR_MAXI_DEF;
+    } else {
+        console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
+
+    }
+    return (contador)
+
+}
+
+/**devuelve el estado del objeto con sus valores actualizado 
+ * 
+ * @param {String} eleccion             ingresdas por usuario
+ * @param {Number} opcion               valor a comparar   
+ * @param {Object} mago_estado_vital    objeto a modificar
+ * @param {Object} horocrux_daño        objeto que modifica 
+ * @returns estado del objeto con valores actualizados
+ */
+function elejir_daño(eleccion, opcion, mago_estado_vital, horocrux_daño) {
+
+    if (eleccion === opcion) {
+        mago_estado_vital -= horocrux_daño
+    } return (mago)
+}
+
+
+
+
+
 
 /**pide un palabra y la devuelve
  * 
