@@ -62,6 +62,14 @@ const HOROCRUX_ESTADOS_3_DEF = false;
 const HOROCRUX_ESTADOS_4_DEF = false;
 const HOROCRUX_ESTADOS_5_DEF = false;
 const CONTADOR_TRUE_DEF = 0;
+const SI_INCORRECTO_CODI_DEF = 0;
+const VICTORIIAA_DEF = false;
+const MENSAJE_DESTRUYE_HOROCRUX_DEF = "def"
+
+
+
+
+
 
 const mago = {
     salud: 400,
@@ -91,36 +99,30 @@ function main() {
     let estado_prob_muerte = ESTADO_PRO_MUERTE_DEF;
     let estado_prob_rechazo = ESTADO_PRO_RECHAZO_DEF;
 
+    let mensaje_destruye_un_horocrux = MENSAJE_DESTRUYE_HOROCRUX_DEF;
+
     let horocrux_rotos = HOROCRUX_ROTOS_DEF;
 
     let contador_true = CONTADOR_TRUE_DEF;
 
     let estado_funcion_compar_cod_finales = false;
 
+    let si_incorrecto_codi = SI_INCORRECTO_CODI_DEF;
+
     let horocrux_estado_1 = HOROCRUX_ESTADOS_1_DEF;
     let horocrux_estado_2 = HOROCRUX_ESTADOS_2_DEF;
     let horocrux_estado_3 = HOROCRUX_ESTADOS_3_DEF;
     let horocrux_estado_4 = HOROCRUX_ESTADOS_4_DEF;
     let horocrux_estado_5 = HOROCRUX_ESTADOS_5_DEF;
-    /**
-     * 
-    let adivina_el_codigo_1 = ADIVINA_EL_CODIGO_DEF_1;
-    let adivina_el_codigo_2 = ADIVINA_EL_CODIGO_DEF_2;
-    let adivina_el_codigo_3 = ADIVINA_EL_CODIGO_DEF_3;
-    let adivina_el_codigo_4 = ADIVINA_EL_CODIGO_DEF_4;
-    let adivina_el_codigo_5 = ADIVINA_EL_CODIGO_DEF_5;
-    
-    */
 
-    let adivina_codigo = "def";
+    let vicotriiaa = VICTORIIAA_DEF;
+
     let elejir_daño_recibido = ELEJIR_DAÑO_RECIBIDO_DEF
     let estado_mago = ESTADO_MAGO_DEF;
 
     let nombre_horocrux = [NOMBRE_HOROCRUX_1, NOMBRE_HOROCRUX_2, NOMBRE_HOROCRUX_3, NOMBRE_HOROCRUX_4, NOMBRE_HOROCRUX_5];
     let codigos_finales = [codigo_final_1, codigo_final_2, codigo_final_3, codigo_final_4, codigo_final_5];
-    let estados_de_todos_horocrux = [horocrux_estado_1 && horocrux_estado_2 && horocrux_estado_3 && horocrux_estado_4 && horocrux_estado_5];
-    // let adivinar_codigos = [adivina_el_codigo_1, adivina_el_codigo_2, adivina_el_codigo_3, adivina_el_codigo_4, adivina_el_codigo_5]
-    let codigos_descifrados = [false, false, false, false, false]
+    let estados_de_todos_horocrux = [horocrux_estado_1, horocrux_estado_2, horocrux_estado_3, horocrux_estado_4, horocrux_estado_5];
 
 
 
@@ -150,12 +152,10 @@ function main() {
         estado_mago = mago.cordura > 0 && mago.salud > 0
         console.log(codigos_finales);
 
+        console.log("vectorc completo ants de la modificacion", estados_de_todos_horocrux);
+
         if ((contador > 0) && (estado_prob_muerte) && (estado_mago)) {
-            mago = {
-                salud: 0,
-                cordura: 0
-            }
-            console.log(mago);
+
             console.log(DERROTA);
             contador = MAXIMO_INTENOS_DEF;
 
@@ -186,31 +186,23 @@ function main() {
             estado_funcion_compar_cod_finales = comparacion_codigos_finales(codigos_finales[contador_true])
             console.log(estado_funcion_compar_cod_finales);
 
-            let si_incorrecto_codi = si_codigo_incorrecto(estado_funcion_compar_cod_finales);
-            console.log(si_incorrecto_codi);
+            mensaje_destruye_un_horocrux = mensaje_destrucion_horocrux(estado_funcion_compar_cod_finales, nombre_horocrux, contador_true)
+            console.log(mensaje_destruye_un_horocrux);
+            si_incorrecto_codi = si_codigo_incorrecto(estado_funcion_compar_cod_finales);
 
+            modificar_estado_en_vector_control_destruccion(estados_de_todos_horocrux, contador_true, estado_funcion_compar_cod_finales)
 
+            console.log("este tendria que devolver el vector modificado", estados_de_todos_horocrux);
+            vicotriiaa = condicion_de_victoria(estados_de_todos_horocrux, estados_de_todos_horocrux.length)
+            console.log("estado final de los horocurx", vicotriiaa);
 
-// revisar las funciones que no dieron del todo bien los valores 
-//ejecutar y revisar y comprar valores colocar mas los para un correcto control 
-
-
-
-            modificar_estado_en_vector_control_destruccion(estados_de_todos_horocrux, contador_true)
-
-            console.log(estados_de_todos_horocrux);
-
-
-
-
-
-
+            contador = vidtoria_al_fin(vicotriiaa, contador)
 
             contador_true = contador_para_posicion_vector(estado_funcion_compar_cod_finales, contador_true)
             console.log("para saber el indice donde cambia el vector", contador_true);
             contador = contador + 1
             contador_elejir = CONTADOR_ELEJIR_DEF;
-            console.log("vuelta AL FINAL CUANDO TEMRNIA LA VUELTA Y SUMA Y VUELVE AL INCIO", contador);
+            console.log(mensaje_de_victoria(vicotriiaa));
         }
 
 
@@ -230,12 +222,12 @@ function main() {
  */
 function ingresar_codigo() {
     let codigo_ingresado = "def";
-console.log( "inicio de funcion de ingrsar codigo");
+    console.log("inicio de funcion de ingrsar codigo");
     console.log(PREGUNTA_DE_ADIVINAR);
     codigo_ingresado = (leer());
     console.log("finde cuncion ingresar codigo");
     return (codigo_ingresado)
-    
+
 }
 
 
@@ -248,17 +240,21 @@ console.log( "inicio de funcion de ingrsar codigo");
 function comparacion_codigos_finales(vector_codigos) {
     let ingresado = "def";
     let estado = false;
-console.log("------inicio de fucnion de comparacion---");
     ingresado = ingresar_codigo()
-
     if (vector_codigos === ingresado) {
         estado = true;
-
-        console.log("saliendo del if para codigo correcto");
     }
-
-    console.log("-----fin de funcion de comparcion");
     return (estado)
+
+}
+
+
+function mensaje_destrucion_horocrux(estado_comparacion, vector_nombres, contador_true) {
+    let mensaje = "def";
+    if (estado_comparacion) {
+        mensaje = "destruiste el horocrux "+ vector_nombres[contador_true]
+    }
+    return (mensaje)
 
 }
 
@@ -273,8 +269,6 @@ function contador_para_posicion_vector(estado_funcion_compar_cod_finales, contad
 
     if (estado_funcion_compar_cod_finales) {
         contador_true = contador_true + 1
-
-        console.log("sumando correctaente vuelta al contador dentro de la funcion", contador_true);
     }
 
     return (contador_true)
@@ -286,16 +280,55 @@ function contador_para_posicion_vector(estado_funcion_compar_cod_finales, contad
  * 
  * @param {Boolean} vector_de_codigos_estados estado en indice  
  * @param {Number} contador_true que determina el indice del vector
-   * @returns vector modifica  
+ * @param {Boolean} estado_comparacion de funcion de comparacion de codigos
+   
+* @returns vector modifica  
  */
-function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estados, contador_true) {
+function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estados, contador_true, estado_comparacion) {
+    if (estado_comparacion) {
 
-    vector_de_codigos_estados[contador_true] = true;
-    return (vector_de_codigos_estados)
+        vector_de_codigos_estados[contador_true] = true;
+        return (vector_de_codigos_estados)
+    }
 }
 
 
+/**compara lo estados del vector y devuelve su valor final con condicion de && en su comparacion
+ * 
+ * @param {Boolean} vector  estado de indices 
+ * @returns un valor booleano
+ */
+function condicion_de_victoria(vector, tamano_vector) {
+    let estado_final = false;
+    let temporal = false;
+    for (let i = 0; i < tamano_vector; i++) {
+        temporal = vector[i]
+        if (i > 0) {
+            estado_final = temporal && vector[i]
+        }
+    }
+    return (estado_final)
+}
 
+
+/**si cumple condicion termina el while devolviendo el contador en su maximo
+ * 
+ * @param {Number} contador del vueltas de while principal 
+ * @param {Boolean} condicion_respecto_fincion_condicio_vicotria para ingresar al if
+ * @returns contador finalizado 
+ */
+function vidtoria_al_fin(condicion_respecto_fincion_condicio_vicotria, contador) {
+    if (condicion_respecto_fincion_condicio_vicotria) {
+        contador = MAXIMO_INTENOS_DEF;
+    } return (contador)
+}
+
+
+function mensaje_de_victoria(victoria) {
+    if (victoria) {
+        return (VICTORIA)
+    }
+}
 
 
 /**en caso de que los codigos no coincidan realiza la acccion de actualizar estado de salud de mago
@@ -305,17 +338,11 @@ function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estado
  */
 function si_codigo_incorrecto(estado_funcion_compar_cod_finales) {
 
-console.log("----------inion de funcion de si es incorrecto el codigo ------");
-
     if (!estado_funcion_compar_cod_finales) {
         mago.salud -= horocrux.daño_salud
         mago.cordura -= horocrux.daño_cordura
-        console.log("saliendo del if de cuando es incorrecto dentro de la funcion, salud del mago actualiza", mago);
         return (mago)
     }
-console.log( "------- fini de duncion de si es incorrecto el codigo");
-
-
 }
 
 
