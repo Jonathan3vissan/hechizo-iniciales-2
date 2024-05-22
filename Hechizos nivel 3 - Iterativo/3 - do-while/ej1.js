@@ -112,9 +112,6 @@ function main() {
     let horocrux_estado_4 = HOROCRUX_ESTADOS_4_DEF;
     let horocrux_estado_5 = HOROCRUX_ESTADOS_5_DEF;
 
-    let elejir_daño_opcional = 0;
-    let elejir_daño_opciona2 = 0;
-
     let vicotriiaa = VICTORIIAA_DEF;
 
     let elejir_daño_recibido = ELEJIR_DAÑO_RECIBIDO_DEF
@@ -124,35 +121,20 @@ function main() {
     let codigos_finales = [codigo_final_1, codigo_final_2, codigo_final_3, codigo_final_4, codigo_final_5];
     let estados_de_todos_horocrux = [horocrux_estado_1, horocrux_estado_2, horocrux_estado_3, horocrux_estado_4, horocrux_estado_5];
 
-
-
-
-
-    console.log(estados_de_todos_horocrux); ///ver si da true con todos en true
-
-
-
-
     codigos_finales[0] = HOTOCRUX_CODIGO_1 + numero_aleatorio(VALOR_MINI_HOROX_1, VALOR_MAX_HOROX_1)
     codigos_finales[1] = numero_aleatorio(VALOR_MINI_HOROX_2, VALOR_MAX_HOROX_2) + HOTOCRUX_CODIGO_2
     codigos_finales[2] = HOTOCRUX_CODIGO_3_A + numero_aleatorio(VALOR_MINI_HOROX_3, VALOR_MAX_HOROX_3) + HOTOCRUX_CODIGO_3_B;
     codigos_finales[3] = letra_aleatoria(VALOR_MINI_HOROX_4, VALOR_MAX_HOROX_4) + HOTOCRUX_CODIGO_4
     codigos_finales[4] = HOTOCRUX_CODIGO_5 + letra_aleatoria(VALOR_MINI_HOROX_5, VALOR_MAX_HOROX_5)
-    //ya soluciones el tema de las funciones para la condicion de entrada al fatal o de elejir el daño(dentro de estos estan la sposibilidade de aumentar el daño  o disminuir la posibilidad de rechzao) ,seguir con el tema de las pregunta y ataque pregunta a pregunta 
-
+  
 
 
     while (contador < maximo_intentos) {
-        console.log("INICIO DE VUELTA APENAS INICIA WHULE", contador); //solo es control del incio de la vuelta del bucle
-        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)           //funcion que me devuelve un bolenao 
-        console.log("ESTE ES EL DE MUERTE BOLEAN ", estado_prob_muerte);      // control de si es falo o verdadre
-        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)        //funcion que me da un bolelaon
-        console.log("est es RECHAZAO ESTADO BOLEAN ", estado_prob_rechazo); // control de si es v o f
+        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)         
+        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)        
         console.log(mago);
         estado_mago = mago.cordura > 0 && mago.salud > 0
         console.log(codigos_finales);
-
-        console.log("vectorc completo ants de la modificacion", estados_de_todos_horocrux);
 
         if ((contador > 0) && (estado_prob_muerte) && (estado_mago)) {
 
@@ -165,17 +147,11 @@ function main() {
             while (contador_elejir < CONTADOR_ELEJIR_MAXI_DEF) {
                 elejir_daño_recibido = Number(leer());
 
-                console.log(elejir_daño(elejir_daño_recibido, OPCION_UNO, mago.salud, horocrux.daño_salud));
+                console.log(elejir_daño(elejir_daño_recibido));
 
-                console.log(elejir_daño(elejir_daño_recibido, OPCION_DOS, mago.cordura, horocrux.daño_cordura));
 
-                mensaje_opcion_no_valida(elejir_daño_recibido, contador_elejir,)
+                contador_elejir=mensaje_opcion_no_valida(elejir_daño_recibido, contador_elejir,)
             }
-            //else {
-            //console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
-            //}
-
-
 
         } else {
             estado_funcion_compar_cod_finales = comparacion_codigos_finales(codigos_finales[contador_true])
@@ -187,30 +163,28 @@ function main() {
 
             modificar_estado_en_vector_control_destruccion(estados_de_todos_horocrux, contador_true, estado_funcion_compar_cod_finales)
 
-            console.log("este tendria que devolver el vector modificado", estados_de_todos_horocrux);
             vicotriiaa = condicion_de_victoria(estados_de_todos_horocrux, estados_de_todos_horocrux.length)
-            console.log("estado final de los horocurx", vicotriiaa);
-
             contador = vidtoria_al_fin(vicotriiaa, contador)
 
             contador_true = contador_para_posicion_vector(estado_funcion_compar_cod_finales, contador_true)
-            console.log("para saber el indice donde cambia el vector", contador_true);
             contador = contador + 1
             contador_elejir = CONTADOR_ELEJIR_DEF;
             console.log(mensaje_de_victoria(vicotriiaa));
         }
-
-
-
-
     }
-
-
-
-
-
 } main();
 
+
+
+function salida_de_elejir_daño(params) {
+    
+}
+/**
+ * 
+ * @param {*} eleccion 
+ * @param {*} contador 
+ * @returns 
+ */
 function mensaje_opcion_no_valida(eleccion, contador) {
 
     if ((eleccion === OPCION_UNO) || (eleccion === OPCION_DOS)) {
@@ -223,19 +197,21 @@ function mensaje_opcion_no_valida(eleccion, contador) {
 
 }
 
-/**devuelve el estado del objeto con sus valores actualizado 
+/**determina en que propiedad se actualiza el objeto mago
  * 
- * @param {String} eleccion             ingresdas por usuario
- * @param {Number} opcion               valor a comparar   
- * @param {Object} mago_estado_vital    objeto a modificar
- * @param {Object} horocrux_daño        objeto que modifica 
- * @returns estado del objeto con valores actualizados
+ * @param {Number} eleccion que elije el usuario que determnia el daño 
+ * @param {Number} opcion las  validas de eleccion 
+ * @returns el objeto mago actualizado
  */
-function elejir_daño(eleccion, opcion, mago_estado_vital, horocrux_daño) {
+function elejir_daño(eleccion) {
 
-    if (eleccion === opcion) {
-        mago_estado_vital -= horocrux_daño
-    } return (mago)
+    if (eleccion === OPCION_UNO) {
+        mago.salud-=horocrux.daño_salud
+
+    }else if (eleccion===OPCION_DOS) {
+        mago.cordura-=horocrux.daño_cordura
+    }
+     return (mago)
 }
 
 
