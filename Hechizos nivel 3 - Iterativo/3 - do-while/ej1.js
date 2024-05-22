@@ -248,11 +248,17 @@ function comparacion_codigos_finales(vector_codigos) {
 
 }
 
-
+/**devuelde mensaje para la destruccion de cada horocrux
+ * 
+ * @param {Boolean} estado_comparacion proveniente de funcion estado de comparacion
+ * @param {String} vector_nombres    de horocrux
+ * @param {Number} contador_true    que definde el indice del vector
+ * @returns mensaje destrucion de horocrux
+ */
 function mensaje_destrucion_horocrux(estado_comparacion, vector_nombres, contador_true) {
     let mensaje = "def";
     if (estado_comparacion) {
-        mensaje = "destruiste el horocrux "+ vector_nombres[contador_true]
+        mensaje = "destruiste el horocrux " + vector_nombres[contador_true]
     }
     return (mensaje)
 
@@ -293,9 +299,10 @@ function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estado
 }
 
 
-/**compara lo estados del vector y devuelve su valor final con condicion de && en su comparacion
+/**compara lo estados del vector y devuelve su valor final con condicion de "&&" en su comparacion
  * 
  * @param {Boolean} vector  estado de indices 
+ * @param {Number} tamano_vector elegido 
  * @returns un valor booleano
  */
 function condicion_de_victoria(vector, tamano_vector) {
@@ -323,7 +330,11 @@ function vidtoria_al_fin(condicion_respecto_fincion_condicio_vicotria, contador)
     } return (contador)
 }
 
-
+/**mensaje de que muestra el fin del juego ganando
+ * 
+ * @param {String} victoria mensaje final 
+ * @returns mensaje de fin de juego ganando
+ */
 function mensaje_de_victoria(victoria) {
     if (victoria) {
         return (VICTORIA)
