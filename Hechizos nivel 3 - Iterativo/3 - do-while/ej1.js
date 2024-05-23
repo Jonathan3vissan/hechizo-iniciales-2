@@ -126,12 +126,12 @@ function main() {
     codigos_finales[2] = HOTOCRUX_CODIGO_3_A + numero_aleatorio(VALOR_MINI_HOROX_3, VALOR_MAX_HOROX_3) + HOTOCRUX_CODIGO_3_B;
     codigos_finales[3] = letra_aleatoria(VALOR_MINI_HOROX_4, VALOR_MAX_HOROX_4) + HOTOCRUX_CODIGO_4
     codigos_finales[4] = HOTOCRUX_CODIGO_5 + letra_aleatoria(VALOR_MINI_HOROX_5, VALOR_MAX_HOROX_5)
-  
+
 
 
     while (contador < maximo_intentos) {
-        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)         
-        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)        
+        estado_prob_muerte = valor_comparados_azar_prob(horocrux_rotos)
+        estado_prob_rechazo = valor_comparados_azar_prob(horocrux_rotos)
         console.log(mago);
         estado_mago = mago.cordura > 0 && mago.salud > 0
         console.log(codigos_finales);
@@ -146,11 +146,8 @@ function main() {
 
             while (contador_elejir < CONTADOR_ELEJIR_MAXI_DEF) {
                 elejir_daño_recibido = Number(leer());
-
                 console.log(elejir_daño(elejir_daño_recibido));
-
-
-                contador_elejir=mensaje_opcion_no_valida(elejir_daño_recibido, contador_elejir,)
+                contador_elejir = mensaje_opcion_no_valida(elejir_daño_recibido, contador_elejir,)
             }
 
         } else {
@@ -176,26 +173,22 @@ function main() {
 
 
 
-function salida_de_elejir_daño(params) {
-    
-}
-/**
+
+/**devuelve en contador en su maximo para dar salida del bucle
  * 
- * @param {*} eleccion 
- * @param {*} contador 
- * @returns 
+ * @param {*} eleccion del usuario
+ * @param {*} contador  de las vuelas del bucle
+ * @returns contador en maximo intentos
  */
 function mensaje_opcion_no_valida(eleccion, contador) {
-
     if ((eleccion === OPCION_UNO) || (eleccion === OPCION_DOS)) {
         contador = CONTADOR_ELEJIR_MAXI_DEF;
     } else {
         console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
-
     }
     return (contador)
-
 }
+
 
 /**determina en que propiedad se actualiza el objeto mago
  * 
@@ -204,18 +197,13 @@ function mensaje_opcion_no_valida(eleccion, contador) {
  * @returns el objeto mago actualizado
  */
 function elejir_daño(eleccion) {
-
     if (eleccion === OPCION_UNO) {
-        mago.salud-=horocrux.daño_salud
-
-    }else if (eleccion===OPCION_DOS) {
-        mago.cordura-=horocrux.daño_cordura
+        mago.salud -= horocrux.daño_salud
+    } else if (eleccion === OPCION_DOS) {
+        mago.cordura -= horocrux.daño_cordura
     }
-     return (mago)
+    return (mago)
 }
-
-
-
 
 
 
@@ -225,12 +213,9 @@ function elejir_daño(eleccion) {
  */
 function ingresar_codigo() {
     let codigo_ingresado = "def";
-    console.log("inicio de funcion de ingrsar codigo");
     console.log(PREGUNTA_DE_ADIVINAR);
     codigo_ingresado = (leer());
-    console.log("finde cuncion ingresar codigo");
     return (codigo_ingresado)
-
 }
 
 
@@ -248,7 +233,6 @@ function comparacion_codigos_finales(vector_codigos) {
         estado = true;
     }
     return (estado)
-
 }
 
 /**devuelde mensaje para la destruccion de cada horocrux
@@ -275,13 +259,10 @@ function mensaje_destrucion_horocrux(estado_comparacion, vector_nombres, contado
  * @returns valor usado para indice de un vector
  */
 function contador_para_posicion_vector(estado_funcion_compar_cod_finales, contador_true) {
-
     if (estado_funcion_compar_cod_finales) {
         contador_true = contador_true + 1
     }
-
     return (contador_true)
-
 }
 
 
@@ -295,7 +276,6 @@ function contador_para_posicion_vector(estado_funcion_compar_cod_finales, contad
  */
 function modificar_estado_en_vector_control_destruccion(vector_de_codigos_estados, contador_true, estado_comparacion) {
     if (estado_comparacion) {
-
         vector_de_codigos_estados[contador_true] = true;
         return (vector_de_codigos_estados)
     }
@@ -360,10 +340,6 @@ function si_codigo_incorrecto(estado_funcion_compar_cod_finales) {
 }
 
 
-
-
-
-
 function prob_actualizada(horocrux_rotos) {
     let prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF + (REDUC_PROB_RECHA_ATAQ * horocrux_rotos);
     return (prob_rechazo_ataques)
@@ -390,11 +366,6 @@ function valor_comparados_azar_prob(horocrux_rotos,) {
     }
     return (estado)
 }
-
-
-
-
-
 
 
 
