@@ -139,9 +139,11 @@ function main() {
             console.log("elije donde recibiras daño  si a la salud (1) o cordura (2), elije con los numero asignados")
 
             while (contador_elejir < CONTADOR_ELEJIR_MAXI_DEF) {
-                elejir_daño_recibido = Number(leer());
+                /*elejir_daño_recibido = Number(leer());
                 console.log(elejir_daño(elejir_daño_recibido));
                 contador_elejir = mensaje_opcion_no_valida(elejir_daño_recibido, contador_elejir,)
+            */
+                console.log(proceso_total_de_eleccion_de_daño());
             }
 
         } else {
@@ -167,12 +169,35 @@ function main() {
 } main();
 
 
+function proceso_total_de_eleccion_de_daño(contador) {   // estoy creando esta funcino para  usar solo una funcion en elejir daño asi sigo modulando  
+    let salida = 0;
+    let elejir = 0;
 
+    elejir = Number(leer());
+    {
+        if ((eleccion === OPCION_UNO) || (eleccion === OPCION_DOS)) {
+            contador = CONTADOR_ELEJIR_MAXI_DEF;
+            if (eleccion === OPCION_UNO) {
+                mago.salud -= horocrux.daño_salud
+            } else if (eleccion === OPCION_DOS) {
+                mago.cordura -= horocrux.daño_cordura
+            }
+
+        }
+    } else {
+        console.log("DEBES INGRESAR UNA DE LAS DOS OPCIONES ( 1 o 2 )");
+    }
+                                                                                        // tenia pensado ahcer eque salida depende de la eleccion sea contador o maog la salida tengo que ver com los resuelvo si es posible
+
+
+
+    return (salida)
+}
 
 /**devuelve en contador en su maximo para dar salida del bucle
  * 
- * @param {*} eleccion del usuario
- * @param {*} contador  de las vuelas del bucle
+ * @param {Number} eleccion del usuario
+ * @param {Number} contador  de las vuelas del bucle
  * @returns contador en maximo intentos
  */
 function mensaje_opcion_no_valida(eleccion, contador) {
@@ -187,8 +212,8 @@ function mensaje_opcion_no_valida(eleccion, contador) {
 
 /**determina en que propiedad se actualiza el objeto mago
  * 
- * @param {Number} eleccion que elije el usuario que determnia el daño 
- * @param {Number} opcion las  validas de eleccion 
+ * @param {Number} eleccion  del usuario que decide que daño recibe 
+ * @param {Number} opcion     las  validas de eleccion 
  * @returns el objeto mago actualizado
  */
 function elejir_daño(eleccion) {
