@@ -62,16 +62,15 @@ const VICTORIIAA_DEF = false;
 const MENSAJE_DESTRUYE_HOROCRUX_DEF = "def"
 const OPCION_UNO = 1;
 const OPCION_DOS = 2;
-
-
-
-
+const PERDER_POR_INTENTOS_DEF = "def";
 
 
 const mago = {
     salud: 400,
     cordura: 200
 }
+
+
 const horocrux = {
     daño_salud: 10.4,
     daño_cordura: 5.7
@@ -111,6 +110,8 @@ function main() {
     let horocrux_estado_3 = HOROCRUX_ESTADOS_3_DEF;
     let horocrux_estado_4 = HOROCRUX_ESTADOS_4_DEF;
     let horocrux_estado_5 = HOROCRUX_ESTADOS_5_DEF;
+
+    let mensaje_de_perder_o_ganar = PERDER_POR_INTENTOS_DEF;
 
     let vicotriiaa = VICTORIIAA_DEF;
 
@@ -161,12 +162,13 @@ function main() {
             modificar_estado_en_vector_control_destruccion(estados_de_todos_horocrux, contador_true, estado_funcion_compar_cod_finales)
 
             vicotriiaa = condicion_de_victoria(estados_de_todos_horocrux, estados_de_todos_horocrux.length)
-            contador = vidtoria_al_fin(vicotriiaa, contador)
+            contador = finaliza_contador_por_victoria(vicotriiaa, contador)
 
             contador_true = contador_para_posicion_vector(estado_funcion_compar_cod_finales, contador_true)
             contador = contador + 1
+            mensaje_de_perder_o_ganar = mensaje_vicotira_o_derrota(contador, vicotriiaa)
+            console.log(mensaje_de_perder_o_ganar);
             contador_elejir = CONTADOR_ELEJIR_DEF;
-            console.log(mensaje_de_victoria(vicotriiaa));
         }
     }
 } main();
@@ -301,28 +303,41 @@ function condicion_de_victoria(vector, tamano_vector) {
 }
 
 
+
+/**devuelve mensaje de derrota por usar maximo cantinda de intentos o de victoria si destruye todo los horocrux
+ * 
+ * @param {Boolean} victoria 
+ * @param {Number} contador de vueltas de control del while 
+ * @returns mensaje de derrota por usar maximo cantidad de intentos
+ */
+function mensaje_vicotira_o_derrota(contador, victoria) {
+    let mensaje = "";
+    if (contador === MAXIMO_INTENOS_DEF) {
+        mensaje = DERROTA
+    } else if (victoria) {
+        mensaje = VICTORIA
+    }
+
+    return (mensaje)
+}
+
+
+
+
+
+
 /**si cumple condicion termina el while devolviendo el contador en su maximo
  * 
  * @param {Number} contador del vueltas de while principal 
  * @param {Boolean} condicion_respecto_fincion_condicio_vicotria para ingresar al if
  * @returns contador finalizado 
  */
-function vidtoria_al_fin(condicion_respecto_fincion_condicio_vicotria, contador) {
+function finaliza_contador_por_victoria(condicion_respecto_fincion_condicio_vicotria, contador) {
     if (condicion_respecto_fincion_condicio_vicotria) {
         contador = MAXIMO_INTENOS_DEF;
     } return (contador)
 }
 
-/**mensaje de que muestra el fin del juego ganando
- * 
- * @param {String} victoria mensaje final 
- * @returns mensaje de fin de juego ganando
- */
-function mensaje_de_victoria(victoria) {
-    if (victoria) {
-        return (VICTORIA)
-    }
-}
 
 
 /**en caso de que los codigos no coincidan realiza la acccion de actualizar estado de salud de mago
@@ -340,16 +355,36 @@ function si_codigo_incorrecto(estado_funcion_compar_cod_finales) {
 }
 
 
+
+
+/**probabilidad de rechazo de ataque final despues de usar las condicones de reduccion si correspomde
+ * 
+ * @param {Number} horocrux_rotos 
+ * @returns probabiliada de rechazo de ataque final 
+ */
 function prob_actualizada(horocrux_rotos) {
     let prob_rechazo_ataques = PROBA_RECAHAZO_ATAQUE_DEF + (REDUC_PROB_RECHA_ATAQ * horocrux_rotos);
     return (prob_rechazo_ataques)
 }
 
+
+
+/**la probabilidad actualizadad  de recibir un ataque mortal , que aumenta por elementos destruidos 
+ * 
+ * @param {Number} horocrux_rotos por el usuario 
+ * @returns la probabildiad de recibir un ataque mortal
+ */
 function prob_actualizada_2(horocrux_rotos) {
     let aumento_de_posibilidad = PROB_HOROCRUX_MATAR + (ADICION_PROB_POR_HOROX_ROTO * horocrux_rotos);
     return (aumento_de_posibilidad)
 }
 
+
+/**u booleanos que determina si rechaza un ataque en ese turno
+ * 
+ * @param {Number} horocrux_rotos por el acierto de los codigos 
+ * @returns booleano que decide si rechaza un ataque en ese turno
+ */
 function valor_comparados_azar_prob(horocrux_rotos) {
     let estado = false;
     if (numero_aleatorio(VALOR_MIN_RECHAZO_ATAQUE, VALOR_MAX_RECHAZO_ATAQUE) < prob_actualizada(horocrux_rotos)) {
@@ -359,6 +394,14 @@ function valor_comparados_azar_prob(horocrux_rotos) {
 }
 
 
+
+
+
+/**devuelve un valor booleano dependiendo si cumple comndicion de que se ejcute el ataque mortal al usuario
+ * 
+ * @param {Number} horocrux_rotos por turno
+ * @returns un valor booleano 
+ */
 function valor_comparados_azar_prob(horocrux_rotos,) {
     let estado = false;
     if (numero_aleatorio(VALOR_MIN_PROB_MUERTE, VALOR_MAX_PROB_MUERTE) < prob_actualizada_2(horocrux_rotos)) {
@@ -366,6 +409,8 @@ function valor_comparados_azar_prob(horocrux_rotos,) {
     }
     return (estado)
 }
+
+
 
 
 
@@ -379,6 +424,9 @@ function numero_aleatorio(minimo, maximo) {
     let azar = Math.round(Math.random() * (minimo - maximo) + maximo)
     return (azar)
 }
+
+
+
 
 /**devuelve una letra aletaria
  *  
