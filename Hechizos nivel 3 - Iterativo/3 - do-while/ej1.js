@@ -33,11 +33,6 @@ const CODIGO_FINAL_2_DEF = "DEF";
 const CODIGO_FINAL_3_DEF = "DEF";
 const CODIGO_FINAL_4_DEF = "DEF";
 const CODIGO_FINAL_5_DEF = "DEF";
-const HOROCRUX_DESTROZADO_1_DEF = false;
-const HOROCRUX_DESTROZADO_2_DEF = false;
-const HOROCRUX_DESTROZADO_3_DEF = false;
-const HOROCRUX_DESTROZADO_4_DEF = false;
-const HOROCRUX_DESTROZADO_5_DEF = false;
 const VALOR_MIN_RECHAZO_ATAQUE = 0;
 const VALOR_MAX_RECHAZO_ATAQUE = 100;
 const VALOR_MIN_PROB_MUERTE = 0;
@@ -81,7 +76,6 @@ const horocrux = {
 
 
 function main() {
-
     let contador = CONTADOR_DEF;
     let contador_elejir = CONTADOR_ELEJIR_DEF;
 
@@ -127,7 +121,6 @@ function main() {
     codigos_finales[2] = HOTOCRUX_CODIGO_3_A + numero_aleatorio(VALOR_MINI_HOROX_3, VALOR_MAX_HOROX_3) + HOTOCRUX_CODIGO_3_B;
     codigos_finales[3] = letra_aleatoria(VALOR_MINI_HOROX_4, VALOR_MAX_HOROX_4) + HOTOCRUX_CODIGO_4
     codigos_finales[4] = HOTOCRUX_CODIGO_5 + letra_aleatoria(VALOR_MINI_HOROX_5, VALOR_MAX_HOROX_5)
-
 
 
     while (contador < maximo_intentos) {
